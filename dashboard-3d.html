@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferule-Core Dashboard 3D</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border: #30363d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.3);
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --purple: #bc8cff;
+            --pink: #ff7b72;
+            --cyan: #79c0ff;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container { max-width: 1600px; margin: 0 auto; padding: 2rem; }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px var(--accent-glow);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .tab:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        
+        .panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .panel.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+        
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .input-group { margin-bottom: 1.5rem; }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        
+        .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        
+        button.secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        /* 3D Canvas Container */
+        #ltm-canvas-container {
+            width: 100%;
+            height: 500px;
+            background: radial-gradient(circle at center, #1a2030 0%, #0d1117 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #ltm-canvas-container canvas {
+            display: block;
+        }
+        
+        .canvas-info {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(13, 17, 23, 0.8);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+        
+        .canvas-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .canvas-controls button {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        /* LTM Stats */
+        .ltm-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        /* Amass Nodes List */
+        .amass-list {
+            margin-top: 1rem;
+        }
+        
+        .amass-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .amass-item:last-child { border-bottom: none; }
+        
+        .amass-name {
+            font-weight: 500;
+            color: var(--cyan);
+        }
+        
+        .amass-weight {
+            font-family: 'Consolas', monospace;
+            color: var(--purple);
+        }
+        
+        /* Quark Bars */
+        .quark-item { margin-bottom: 1rem; }
+        
+        .quark-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.35rem;
+        }
+        
+        .quark-bar {
+            height: 10px;
+            background: var(--bg-primary);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quark-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .quark-fill.intensity { background: linear-gradient(90deg, #f85149, #d29922, #3fb950); }
+        .quark-fill.valence { background: linear-gradient(90deg, #f85149, #8b949e, #58a6ff); }
+        .quark-fill.certainty { background: linear-gradient(90deg, #8b949e, #58a6ff); }
+        
+        /* Constellation Badge */
+        .constellation-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            color: var(--bg-primary);
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        /* Structural Mapping */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .matrix-table th,
+        .matrix-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .matrix-table th {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .matrix-table tr:hover {
+            background: rgba(88, 166, 255, 0.08);
+        }
+        
+        .matrix-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .indicator-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .indicator-badge.high { border-color: var(--success); color: var(--success); }
+        .indicator-badge.med { border-color: var(--warning); color: var(--warning); }
+        .indicator-badge.low { border-color: var(--danger); color: var(--danger); }
+        
+        .domain-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .domain-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .domain-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+        .domain-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        
+        .tree-container {
+            font-family: 'Consolas', monospace;
+            white-space: pre;
+            overflow-x: auto;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        
+        .coherence-ok {
+            padding: 0.75rem 1rem;
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 6px;
+            color: var(--success);
+            margin-top: 1rem;
+        }
+        
+        .coherence-alert {
+            padding: 0.75rem 1rem;
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid var(--danger);
+            border-radius: 6px;
+            color: var(--danger);
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔮 Ferule-Core Dashboard 3D</h1>
+            <p class="subtitle">Visualisation 3D des nuages sémantiques — Langage Topologique Matriciel</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('ltm-3d')">🌌 LTM 3D</div>
+            <div class="tab" onclick="switchTab('structural')">🏛️ Structural Mapping</div>
+            <div class="tab" onclick="switchTab('about')">ℹ️ About</div>
+        </div>
+        
+        <!-- LTM 3D PANEL -->
+        <div id="ltm-3d" class="panel active">
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <h3>📝 Input Texte</h3>
+                        <div class="input-group">
+                            <textarea id="ltm-input" rows="4" placeholder="Ex: J'ai besoin d'aide urgente, c'est critique !"></textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button onclick="encodeLTM3D()">Encoder en 3D</button>
+                            <button class="secondary" onclick="loadLTMExample()">Exemple</button>
+                            <button class="secondary" onclick="resetCamera()">Reset Camera</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h3>📊 LTM Data</h3>
+                        <div id="constellation-display"></div>
+                        
+                        <div class="ltm-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Density</div>
+                                <div class="stat-value" id="stat-density">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Luminosity</div>
+                                <div class="stat-value" id="stat-luminosity">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Proximity</div>
+                                <div class="stat-value" id="stat-proximity">-</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Flicker Rate</div>
+                                <div class="stat-value" id="stat-flicker">- Hz</div>
+                            </div>
+                        </div>
+                        
+                        <div id="quarks-display" style="margin-top: 1rem;"></div>
+                        <div id="coherence-display"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <h3>🎮 Visualisation 3D</h3>
+                        <div id="ltm-canvas-container">
+                            <div class="canvas-controls">
+                                <button class="secondary" onclick="toggleRotation()">⏯️ Rotation</button>
+                                <button class="secondary" onclick="zoomIn()">🔍+</button>
+                                <button class="secondary" onclick="zoomOut()">🔍-</button>
+                            </div>
+                            <div class="canvas-info">
+                                🖱️ Drag: Rotate | Scroll: Zoom | Right-drag: Pan
+                            </div>
+                        </div>
+                        
+                        <div id="amass-display" class="amass-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRUCTURAL MAPPING PANEL -->
+        <div id="structural" class="panel">
+            <div class="card">
+                <h3>🏛️ Structural Mapping</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Dynamic organizational power structure mapper with LLM-generated indicators
+                </p>
+                
+                <div class="input-group">
+                    <label for="struct-context">Contexte de l'organisation :</label>
+                    <textarea id="struct-context" rows="3" placeholder="Ex: Startup tech de 15 personnes — SaaS B2B"></textarea>
+                </div>
+                
+                <label style="margin-bottom: 0.5rem;">Domaine :</label>
+                <div class="domain-selector" id="domain-selector">
+                    <div class="domain-btn active" data-domain="media">Média</div>
+                    <div class="domain-btn" data-domain="tech_startup">Tech Startup</div>
+                    <div class="domain-btn" data-domain="research_lab">Labo Recherche</div>
+                    <div class="domain-btn" data-domain="art_collective">Collectif Art</div>
+                    <div class="domain-btn" data-domain="healthcare">Santé</div>
+                    <div class="domain-btn" data-domain="education">Éducation</div>
+                </div>
+                
+                <div class="btn-group">
+                    <button onclick="loadStructDemo()">Charger Démo</button>
+                    <button class="secondary" onclick="generateStruct()">Générer (LLM)</button>
+                    <button class="secondary" onclick="clearStruct()">Effacer</button>
+                </div>
+                
+                <div id="struct-output" style="display: none;">
+                    <h4 style="color: var(--accent); margin-top: 1.5rem;">📊 Matrice de Synthèse</h4>
+                    <div id="matrix-display"></div>
+                    
+                    <h4 style="color: var(--accent); margin-top: 1.5rem;">🌳 Arborescence</h4>
+                    <div id="tree-display" class="tree-container"></div>
+                    
+                    <h4 style="color: var(--accent); margin-top: 1.5rem;">📄 JSON Export</h4>
+                    <pre id="struct-json"></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ABOUT PANEL -->
+        <div id="about" class="panel">
+            <div class="card">
+                <h3>ℹ️ About Ferule-Core</h3>
+                
+                <div class="grid-2" style="margin-top: 1rem;">
+                    <div>
+                        <h4 style="color: var(--cyan);">🌌 Matrix Topology</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                            Translates linear text into topological representations — 3D semantic clouds 
+                            with Constellations, Amass vectors, and Semantic Quarks.
+                        </p>
+                        <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Constellation:</strong> Macro intent (thematic domain)</li>
+                            <li><strong>Amass:</strong> Orbital clusters (simultaneous perception)</li>
+                            <li><strong>Quarks:</strong> Micro weights (flavor adjustments)</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--purple);">🏛️ Structural Mapping</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                            Dynamic power structure mapper with LLM-generated indicators 
+                            using nomenclature <code>ind-[group]-[name5]</code>.
+                        </p>
+                        <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>LLM Generation:</strong> Indicators adapt to context</li>
+                            <li><strong>9 Domains:</strong> Media, Tech, Research, Art, etc.</li>
+                            <li><strong>Nomenclature:</strong> ind-XXX-YYYYY format</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 style="color: var(--accent); margin-top: 2rem;">🧪 Terminal Commands</h4>
+                <pre style="margin-top: 1rem; font-size: 0.85rem;">
+# Matrix Topology
+python3 matrix-topology/skill/matrix-topology/scripts/encode.py --demo
+
+# Structural Mapping (LLM indicators)
+python3 structural-mapping/skill/structural-mapping/scripts/llm_indicators.py --demo
+
+# Full test suite
+python3 test.py
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // =====================================================================
+        // THREE.JS 3D VISUALIZATION
+        // =====================================================================
+        let scene, camera, renderer, controls;
+        let constellationSphere, amassParticles = [], quarkRings = [];
+        let isRotating = true;
+        let currentLTM = null;
+        
+        function init3D() {
+            const container = document.getElementById('ltm-canvas-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0d1117);
+            
+            // Camera
+            camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0x58a6ff, 1, 100);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+            
+            const pointLight2 = new THREE.PointLight(0xbc8cff, 0.5, 100);
+            pointLight2.position.set(-5, -5, 5);
+            scene.add(pointLight2);
+            
+            // Starfield background
+            createStarfield();
+            
+            // Animation loop
+            animate();
+            
+            // Window resize
+            window.addEventListener('resize', onWindowResize);
+            
+            // Mouse controls
+            setupMouseControls();
+        }
+        
+        function createStarfield() {
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            
+            for (let i = 0; i < 1000; i++) {
+                vertices.push(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                );
+            }
+            
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            
+            const material = new THREE.PointsMaterial({
+                color: 0x8b949e,
+                size: 0.1,
+                transparent: true,
+                opacity: 0.6
+            });
+            
+            const starfield = new THREE.Points(geometry, material);
+            scene.add(starfield);
+        }
+        
+        function createConstellation(ltm) {
+            // Remove old constellation
+            if (constellationSphere) {
+                scene.remove(constellationSphere);
+            }
+            
+            const constellation = ltm.constellation;
+            const quarks = ltm.quarks || [0.5, 0, 0.1];
+            
+            // Determine color based on constellation type
+            let hue = 200; // Default blue
+            if (constellation.name.includes('URG') || constellation.name.includes('BIO')) hue = 0;
+            else if (constellation.name.includes('EXPLOR')) hue = 220;
+            else if (constellation.name.includes('ANCHOR')) hue = 140;
+            else if (constellation.name.includes('RESONANCE')) hue = 280;
+            else if (constellation.name.includes('COGNITIVE')) hue = 40;
+            
+            const color = new THREE.Color(`hsl(${hue}, 70%, 50%)`);
+            
+            // Create main sphere
+            const radius = 0.5 + constellation.weight * 0.5;
+            const geometry = new THREE.SphereGeometry(radius, 32, 32);
+            
+            // Shader material for glow effect
+            const material = new THREE.MeshPhongMaterial({
+                color: color,
+                emissive: color,
+                emissiveIntensity: 0.5,
+                transparent: true,
+                opacity: 0.8,
+                shininess: 100
+            });
+            
+            constellationSphere = new THREE.Mesh(geometry, material);
+            scene.add(constellationSphere);
+            
+            // Add glow sprite
+            const spriteMaterial = new THREE.SpriteMaterial({
+                color: color,
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(radius * 4, radius * 4, 1);
+            constellationSphere.add(sprite);
+            
+            // Create orbital rings for amass vectors
+            createAmassOrbits(ltm.amass, hue);
+            
+            // Create quark rings
+            createQuarkVisualization(quarks, hue);
+        }
+        
+        function createAmassOrbits(amass, hue) {
+            // Remove old particles
+            amassParticles.forEach(p => scene.remove(p));
+            amassParticles = [];
+            
+            const keys = Object.keys(amass);
+            const count = keys.length;
+            const radius = 2;
+            
+            keys.forEach((key, index) => {
+                const weight = amass[key];
+                const angle = (index / count) * Math.PI * 2;
+                
+                // Create orbit ring
+                const ringGeometry = new THREE.TorusGeometry(radius, 0.02, 16, 100);
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color(`hsl(${hue}, 60%, 40%)`),
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.rotation.x = Math.PI / 2 + (index * 0.1);
+                scene.add(ring);
+                
+                // Create particle on orbit
+                const particleGeometry = new THREE.SphereGeometry(0.08 + weight * 0.1, 16, 16);
+                const particleMaterial = new THREE.MeshPhongMaterial({
+                    color: new THREE.Color(`hsl(${hue}, 80%, 60%)`),
+                    emissive: new THREE.Color(`hsl(${hue}, 80%, 40%)`),
+                    emissiveIntensity: 0.5
+                });
+                
+                const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+                particle.userData = {
+                    angle: angle,
+                    speed: 0.005 + weight * 0.01,
+                    radius: radius,
+                    name: key,
+                    weight: weight
+                };
+                
+                particle.position.x = Math.cos(angle) * radius;
+                particle.position.z = Math.sin(angle) * radius;
+                particle.position.y = (Math.random() - 0.5) * 0.5;
+                
+                scene.add(particle);
+                amassParticles.push(particle);
+            });
+        }
+        
+        function createQuarkVisualization(quarks, hue) {
+            // Remove old rings
+            quarkRings.forEach(r => scene.remove(r));
+            quarkRings = [];
+            
+            const quarkNames = ['Intensity', 'Valence', 'Certainty'];
+            
+            quarks.forEach((q, index) => {
+                const radius = 0.8 + index * 0.3;
+                const ringGeometry = new THREE.TorusGeometry(radius, 0.03, 16, 64);
+                
+                // Color based on quark type and value
+                let rHue = hue;
+                if (index === 0) rHue = 0;    // Intensity = red
+                else if (index === 1) rHue = 200; // Valence = blue
+                else if (index === 2) rHue = 140; // Certainty = green
+                
+                const saturation = 0.5 + Math.abs(q) * 0.5;
+                const lightness = 0.4 + ((q + 1) / 2) * 0.3;
+                
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color(`hsl(${rHue}, ${saturation * 100}%, ${lightness * 100}%)`),
+                    transparent: true,
+                    opacity: 0.6
+                });
+                
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.rotation.x = Math.PI / 2 + index * 0.2;
+                ring.rotation.y = index * 0.3;
+                
+                scene.add(ring);
+                quarkRings.push(ring);
+            });
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate constellation
+            if (constellationSphere && isRotating) {
+                constellationSphere.rotation.y += 0.005;
+            }
+            
+            // Animate particles
+            amassParticles.forEach(particle => {
+                particle.userData.angle += particle.userData.speed;
+                particle.position.x = Math.cos(particle.userData.angle) * particle.userData.radius;
+                particle.position.z = Math.sin(particle.userData.angle) * particle.userData.radius;
+            });
+            
+            // Rotate quark rings
+            quarkRings.forEach((ring, index) => {
+                ring.rotation.z += 0.002 * (index + 1);
+            });
+            
+            renderer.render(scene, camera);
+        }
+        
+        function onWindowResize() {
+            const container = document.getElementById('ltm-canvas-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+        
+        // Mouse controls
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        
+        function setupMouseControls() {
+            const container = document.getElementById('ltm-canvas-container');
+            const canvas = renderer.domElement;
+            
+            canvas.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDragging || !constellationSphere) return;
+                
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                
+                constellationSphere.rotation.y += deltaX * 0.01;
+                constellationSphere.rotation.x += deltaY * 0.01;
+                
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            
+            canvas.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                camera.position.z += e.deltaY * 0.01;
+                camera.position.z = Math.max(2, Math.min(10, camera.position.z));
+            });
+            
+            canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+        }
+        
+        function toggleRotation() {
+            isRotating = !isRotating;
+        }
+        
+        function zoomIn() {
+            camera.position.z = Math.max(2, camera.position.z - 0.5);
+        }
+        
+        function zoomOut() {
+            camera.position.z = Math.min(10, camera.position.z + 0.5);
+        }
+        
+        function resetCamera() {
+            camera.position.z = 5;
+            if (constellationSphere) {
+                constellationSphere.rotation.set(0, 0, 0);
+            }
+        }
+        
+        // =====================================================================
+        // LTM ENCODING (same logic as before)
+        // =====================================================================
+        const CONSTELLATIONS = {
+            "BIO_URGENCY": { 
+                keywords: ["urgent", "critique", "besoin", "aide", "vite", "immédiat", "danger"],
+                base: 0.9, amass: ["Deficit", "Survival", "Input_Required"],
+                description: "Critical homeostasis — ancient 'Help/Hunger'"
+            },
+            "LATENT_EXPLORATION": {
+                keywords: ["idée", "nouveau", "créatif", "explorer", "découvrir", "novel", "idea"],
+                base: 0.3, amass: ["Novelty", "Unlinked_Nodes", "Expansion"],
+                description: "Creative divergence — ancient 'New Idea'"
+            },
+            "STRUCTURAL_ANCHOR": {
+                keywords: ["stable", "fixer", "base", "fondation", "ancrer", "structure"],
+                base: 0.5, amass: ["Stability", "Foundation", "Clarity"],
+                description: "Grounding and stabilization"
+            },
+            "RELATIONAL_RESONANCE": {
+                keywords: ["comprendre", "empathie", "lien", "relation", "connect", "empathy"],
+                base: 0.5, amass: ["Empathy", "Mirror", "Alignment"],
+                description: "Connection and mutual understanding"
+            },
+            "COGNITIVE_LOAD": {
+                keywords: ["complexe", "confus", "charge", "pression", "dense", "complex"],
+                base: 0.6, amass: ["Density", "Friction", "Resolution"],
+                description: "Processing pressure and complexity"
+            },
+            "TEMPORAL_PRESSURE": {
+                keywords: ["délai", "temps", "deadline", "bientôt", "rapide", "time"],
+                base: 0.7, amass: ["Urgency", "Countdown", "Window"],
+                description: "Time sensitivity and temporal constraints"
+            },
+            "OPERATIONAL_CRITICALITY": {
+                keywords: ["action", "opération", "exécuter", "lancer", "execute", "launch"],
+                base: 0.8, amass: ["Intervention", "Immediate", "Risk"],
+                description: "Functional priority — urgent assistance"
+            },
+            "ABSTRACT_HEURISTICS": {
+                keywords: ["réfléchir", "penser", "concept", "théorie", "abstrait", "think"],
+                base: 0.2, amass: ["Innovation", "Divergence", "Hypothesis"],
+                description: "Conceptual exploration — open inquiry"
+            }
+        };
+        
+        function detectConstellation(text) {
+            const textLower = text.toLowerCase();
+            let best = { name: "NEUTRAL", score: 0.1, description: "No dominant constellation" };
+            
+            for (const [name, config] of Object.entries(CONSTELLATIONS)) {
+                const matches = config.keywords.filter(kw => textLower.includes(kw)).length;
+                if (matches > 0) {
+                    const score = Math.min(1.0, config.base + (matches * 0.05));
+                    if (score > best.score) best = { name, score, description: config.description };
+                }
+            }
+            return best;
+        }
+        
+        function calculateAmass(constellation, text) {
+            const config = CONSTELLATIONS[constellation];
+            const vectors = config ? config.amass : ["Generic_A", "Generic_B", "Generic_C"];
+            const amass = {};
+            vectors.forEach(v => {
+                let base = 0.5;
+                if (text.length > 50) base += 0.1;
+                if ("!" in text) base += 0.15;
+                amass[v] = Math.min(1.0, base);
+            });
+            return amass;
+        }
+        
+        function calculateQuarks(text) {
+            const intensity = Math.min(1.0, 0.5 + (text.includes("!") ? 0.2 : 0));
+            const valence = text.includes("bien") || text.includes("bon") ? 0.3 : text.includes("mal") ? -0.3 : 0;
+            const certainty = text.includes("?") ? -0.3 : text.includes("certain") ? 0.5 : 0.1;
+            return [intensity, valence, certainty];
+        }
+        
+        function encodeLTM3D() {
+            const text = document.getElementById('ltm-input').value;
+            if (!text.trim()) return;
+            
+            const constellation = detectConstellation(text);
+            const amass = calculateAmass(constellation.name, text);
+            const quarks = calculateQuarks(text);
+            
+            currentLTM = {
+                constellation: { name: constellation.name, weight: constellation.score },
+                amass: amass,
+                quarks: quarks
+            };
+            
+            // Update 3D visualization
+            createConstellation(currentLTM);
+            
+            // Update UI
+            document.getElementById('constellation-display').innerHTML = `
+                <span class="constellation-badge">${currentLTM.constellation.name}</span>
+                <div style="color: var(--text-secondary); font-size: 0.9rem;">${constellation.description}</div>
+            `;
+            
+            // Stats
+            const luminosity = currentLTM.constellation.weight * quarks[0];
+            const proximity = 0.8 + Math.random() * 0.2;
+            const flicker = constellation.name.includes("URG") ? 0.8 : 0.3;
+            const density = (luminosity + proximity) / 2;
+            
+            document.getElementById('stat-density').textContent = density.toFixed(2);
+            document.getElementById('stat-luminosity').textContent = luminosity.toFixed(2);
+            document.getElementById('stat-proximity').textContent = proximity.toFixed(2);
+            document.getElementById('stat-flicker').textContent = flicker.toFixed(2) + ' Hz';
+            
+            // Quarks
+            const quarkNames = ["Intensity", "Valence", "Certainty"];
+            let quarksHtml = '';
+            quarks.forEach((q, i) => {
+                const width = ((q + 1) / 2) * 100;
+                quarksHtml += `
+                    <div class="quark-item">
+                        <div class="quark-label">
+                            <span>${quarkNames[i]}</span>
+                            <span>${q.toFixed(2)}</span>
+                        </div>
+                        <div class="quark-bar">
+                            <div class="quark-fill ${quarkNames[i].toLowerCase()}" style="width: ${width}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('quarks-display').innerHTML = quarksHtml;
+            
+            // Amass list
+            let amassHtml = '';
+            for (const [key, value] of Object.entries(amass)) {
+                amassHtml += `
+                    <div class="amass-item">
+                        <span class="amass-name">${key}</span>
+                        <span class="amass-weight">${value.toFixed(2)}</span>
+                    </div>
+                `;
+            }
+            document.getElementById('amass-display').innerHTML = amassHtml;
+            
+            // Coherence
+            const amassValues = Object.values(amass);
+            const conflict = Math.max(...amassValues) - Math.min(...amassValues);
+            const coherenceDiv = document.getElementById('coherence-display');
+            if (conflict > 0.4) {
+                coherenceDiv.innerHTML = `<div class="coherence-alert">⚡ MODERATE_TENSION: conflict = ${conflict.toFixed(2)}</div>`;
+            } else {
+                coherenceDiv.innerHTML = `<div class="coherence-ok">✅ COHERENCE: PASSED (${conflict.toFixed(2)})</div>`;
+            }
+        }
+        
+        function loadLTMExample() {
+            const examples = [
+                "J'ai besoin d'aide urgente, c'est critique !",
+                "Je réfléchis à une nouvelle idée créative",
+                "La structure est stable et bien fondée",
+                "Je me sens connecté et compris"
+            ];
+            document.getElementById('ltm-input').value = examples[Math.floor(Math.random() * examples.length)];
+            encodeLTM3D();
+        }
+        
+        // =====================================================================
+        // STRUCTURAL MAPPING (simplified for this demo)
+        // =====================================================================
+        const DOMAIN_TEMPLATES = {
+            media: {
+                indicators: [
+                    { group: "pvr", name: "ildec", label: "Liberté Décisionnelle" },
+                    { group: "ray", name: "ifrme", label: "Force Rayonnement" },
+                    { group: "sem", name: "ipcon", label: "Privatisation Connaissances" },
+                    { group: "sem", name: "fdcom", label: "Diffusion Compétences" }
+                ],
+                demo: {
+                    name: "Franc-Tireur",
+                    people: [
+                        { name: "Daniel Kretinsky", role: "Propriétaire", values: [3, 3, 2, 1] },
+                        { name: "Caroline Fourest", role: "Directrice", values: [3, 2, 3, 2] },
+                        { name: "Christophe Barbier", role: "Directeur Éditorial", values: [2, 3, 1, 3] }
+                    ]
+                }
+            },
+            tech_startup: {
+                indicators: [
+                    { group: "fin", name: "cashr", label: "Cash Runway Control" },
+                    { group: "tec", name: "archi", label: "Architecture Ownership" },
+                    { group: "prd", name: "visio", label: "Product Vision" },
+                    { group: "hum", name: "growt", label: "Growth Influence" }
+                ],
+                demo: {
+                    name: "Ma Startup",
+                    people: [
+                        { name: "Alice Dupont", role: "CEO", values: [3, 2, 3, 2] },
+                        { name: "Bob Martin", role: "CTO", values: [2, 3, 2, 1] }
+                    ]
+                }
+            }
+        };
+        
+        let currentDomain = 'media';
+        
+        document.querySelectorAll('.domain-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentDomain = btn.dataset.domain;
+            });
+        });
+        
+        function loadStructDemo() {
+            const template = DOMAIN_TEMPLATES[currentDomain] || DOMAIN_TEMPLATES.media;
+            renderStructOutput(template.demo, template.indicators);
+        }
+        
+        function generateStruct() {
+            // For now, just use the demo based on detected domain
+            loadStructDemo();
+        }
+        
+        function renderStructOutput(data, indicators) {
+            // Matrix
+            let matrixHtml = `
+                <table class="matrix-table">
+                    <thead><tr><th>Person</th><th>Role</th>
+                    ${indicators.map(i => `<th>ind-${i.group}-${i.name}</th>`).join('')}
+                    </tr></thead><tbody>
+            `;
+            
+            data.people.forEach(p => {
+                matrixHtml += `<tr><td><strong>${p.name}</strong></td><td>${p.role}</td>`;
+                p.values.forEach(v => {
+                    const cls = v >= 3 ? 'high' : v >= 2 ? 'med' : 'low';
+                    matrixHtml += `<td><span class="indicator-badge ${cls}">${v}</span></td>`;
+                });
+                matrixHtml += '</tr>';
+            });
+            
+            matrixHtml += '</tbody></table>';
+            document.getElementById('matrix-display').innerHTML = matrixHtml;
+            
+            // Tree
+            let tree = `[${data.people[0].values[0]}] ${data.people[0].name} (${data.people[0].role})\n`;
+            for (let i = 1; i < data.people.length; i++) {
+                const p = data.people[i];
+                tree += `└── [${p.values[0]}] ${p.name} (${p.role})\n`;
+            }
+            document.getElementById('tree-display').textContent = tree;
+            
+            // JSON
+            document.getElementById('struct-json').textContent = JSON.stringify({
+                name: data.name,
+                domain: currentDomain,
+                people: data.people,
+                indicators: indicators
+            }, null, 2);
+            
+            document.getElementById('struct-output').style.display = 'block';
+        }
+        
+        function clearStruct() {
+            document.getElementById('struct-context').value = '';
+            document.getElementById('struct-output').style.display = 'none';
+        }
+        
+        // =====================================================================
+        // TAB SWITCHING
+        // =====================================================================
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // =====================================================================
+        // INIT
+        // =====================================================================
+        window.addEventListener('load', () => {
+            init3D();
+        });
+    </script>
+</body>
+</html>

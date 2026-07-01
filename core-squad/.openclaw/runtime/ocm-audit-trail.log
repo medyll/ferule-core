@@ -1,0 +1,30 @@
+# OCM Audit Trail Log
+# All telemetry from Master and Sub-Agents is redirected here.
+# Format: [TIMESTAMP] [LEVEL] [SOURCE] - Message
+
+[INIT] [INFO] [SYSTEM] - OCM Audit Trail initialized
+[2026-04-10T23:37:11.861Z] [INFO] [MASTER] - openclaw-master initializing...
+[2026-04-10T23:37:11.862Z] [INFO] [MASTER] - Runtime directory: C:\Users\Mydde\.openclaw\workspace\applications\openclaw-master\.openclaw\runtime
+[2026-04-10T23:37:11.869Z] [INFO] [MASTER] - Mission queue: C:\Users\Mydde\.openclaw\workspace\applications\openclaw-master\ocm-MISSION-QUEUE.md
+[2026-04-10T23:37:11.878Z] [CRITICAL] [MASTER] - Critical failure detected in instructions - human intervention required
+[2026-04-10T23:37:28.803Z] [INFO] [MASTER] - openclaw-master initializing...
+[2026-04-10T23:37:28.804Z] [INFO] [MASTER] - Runtime directory: C:\Users\Mydde\.openclaw\workspace\applications\openclaw-master\.openclaw\runtime
+[2026-04-10T23:37:28.812Z] [INFO] [MASTER] - Mission queue: C:\Users\Mydde\.openclaw\workspace\applications\openclaw-master\ocm-MISSION-QUEUE.md
+[2026-04-10T23:37:28.822Z] [INFO] [MASTER] - System initialized and ready
+[2026-04-10T23:37:38.736Z] [INFO] [SCANNER] - Starting Place de GrÃ¨ve mission scan
+[2026-04-10T23:37:38.737Z] [INFO] [SCANNER] - No waiting missions found
+"[2026-04-10T23:45:00.000Z] [CRITICAL] [DEBUGGER] - Place de Greve debug complete: place-de-greve.md wiped (35 bytes), watcher inactive since 09/04 21:13, 16 missions lost" 
+"[2026-04-10T23:50:00.000Z] [INFO] [MASTER] - V4 stabilization plan written to ocm-STATUS-REPORT.md" 
+"[2026-04-11T03:00:00.000Z] [INFO] [MASTER] - V4 Stabilisation COMPLETE: All phases done, V4 Production Stable, final report written" 
+[2026-04-11T07:37:27Z] [INFO] [MASTER] - V5 chantier V5-place-de-greve: 5 tâches complétées (watcher auto-start, ID regex, openclaw context, table separators, health check)
+[2026-04-11T07:37:27Z] [INFO] [MASTER] - Core-standards compliance: scaffold v5-place-de-greve complet (README, phase files, TD, bug reports, deployment, llms.txt, USER-NOTES)
+[2026-04-11T07:37:27Z] [INFO] [MASTER] - maintenance-scanner.mjs: queue health=healthy, 9 missions (7 ready, 2 in-progress)
+[2026-04-11T07:37:27Z] [WARN] [MASTER] - Violation initiale: travail V5 effectué sans openclaw-master, corrigé rétroactivement
+[2026-04-11T07:37:27Z] [INFO] [MASTER] - ocm-STATUS-REPORT.md: mis à jour avec rapport V5 complet
+[2026-04-11T07:37:27Z] [INFO] [MASTER] - ocm-INSTRUCTIONS.md: chantier V5 marqué terminé
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - V6 COMPLETE: Timestamp tracking + Atomic lock implemented
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - TD-01: place-de-greve-timestamps.json created, all status mutations tracked
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - TD-02: place-de-greve.lock slot lock + stale mission auto-release (2h threshold)
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - Health check: 6/6 pass, 0 warn (was 4 pass + 2 warn)
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - Place de Greve re-enabled (DISABLED marker removed)
+[2026-04-11T08:30:49Z] [INFO] [MASTER] - PGV6-001/002/003 all marked done

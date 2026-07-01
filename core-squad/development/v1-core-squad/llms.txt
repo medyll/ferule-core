@@ -1,0 +1,8 @@
+# Core-Squad V1
+
+> V1 formalization of live orchestrator under core-standard.
+
+## Documentation
+
+- [README](./README.md) — V1 overview and phase 1 steps
+- [Phase 1](./phase-1-repair.md) — 5 formalization tasks

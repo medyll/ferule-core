@@ -1,0 +1,57 @@
+# core-workflow — Workspace Configuration
+# Known applications, paths, and hooks for the orchestrator.
+
+workspace:
+  root: "C:/Users/Mydde/.openclaw/workspace/core-ferule"
+
+known_applications:
+  - name: "core-squad"
+    path: "core-squad"
+    role: "orchestrator"
+
+  - name: "place-de-greve"
+    path: "place-de-greve"
+    role: "mission-queue"
+
+  - name: "core-standard"
+    path: "core-standard"
+    role: "standard-authority"
+
+  - name: "registry-mind"
+    path: "registry-mind"
+    role: "cognitive-sensor"
+
+  - name: "token-strategie"
+    path: "token-strategie"
+    role: "llm-routing"
+
+  - name: "structural-mapping"
+    path: "structural-mapping"
+    role: "org-mapper"
+
+  - name: "openclaw-maintenance"
+    path: "openclaw-maintenance"
+    role: "systems-maintainer"
+
+  - name: "formal-ideation"
+    path: "formal-ideation"
+    role: "ideation"
+
+# Cross-workflow hooks
+hooks:
+  # After each workflow action, notify core-squad
+  on_action_complete:
+    target: "core-squad"
+    method: "file"
+    path: "core-squad/ocm-INSTRUCTIONS.md"
+
+  # Validate structure against core-standard
+  on_phase_change:
+    target: "core-standard"
+    command: "node core-standard/scripts/check-structure.mjs"
+
+  # Sync status to openspace for cross-app visibility
+  on_status_update:
+    target: "core-openspace"
+    method: "file"
+    path: "core-openspace/status-sync.yaml"

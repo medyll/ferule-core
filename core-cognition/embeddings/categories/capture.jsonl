@@ -1,0 +1,15 @@
+{"id": "cap-001", "category": "capture", "subtype": "thought", "text": "Note : les IA devraient avoir des souvenirs persistants", "keywords": ["note", "IA", "souvenirs"]}
+{"id": "cap-002", "category": "capture", "subtype": "memory", "text": "Je me souviens que cette fonctionnalité a été discutée la semaine dernière", "keywords": ["souviens", "fonctionnalité", "discutée"]}
+{"id": "cap-003", "category": "capture", "subtype": "todo", "text": "Todo : vérifier les logs de la gateway", "keywords": ["todo", "vérifier", "logs", "gateway"]}
+{"id": "cap-004", "category": "capture", "subtype": "thought", "text": "Idée volante : et si les agents pouvaient se cloner ?", "keywords": ["idée", "agents", "cloner"]}
+{"id": "cap-005", "category": "capture", "subtype": "memory", "text": "Rappel : le parser buggeait sur les lignes vides", "keywords": ["rappel", "parser", "buggeait"]}
+{"id": "cap-006", "category": "capture", "subtype": "todo", "text": "À faire : commit les scripts embeddings", "keywords": ["faire", "commit", "scripts"]}
+{"id": "cap-007", "category": "capture", "subtype": "note", "text": "Note rapide : penser à sauvegarder la config", "keywords": ["note", "sauvegarder", "config"]}
+{"id": "cap-008", "category": "capture", "subtype": "todo", "text": "Penser à mettre à jour la documentation", "keywords": ["penser", "documentation"]}
+{"id": "cap-009", "category": "capture", "subtype": "reminder", "text": "Rappel : réunion demain à 14h", "keywords": ["rappel", "réunion"]}
+{"id": "cap-010", "category": "capture", "subtype": "note", "text": "À ne pas oublier : tester le fix avant deploy", "keywords": ["oublier", "tester", "fix"]}
+{"id": "cap-011", "category": "capture", "subtype": "todo", "text": "Todo : nettoyer les vieux fichiers", "keywords": ["todo", "nettoyer", "fichiers"]}
+{"id": "cap-012", "category": "capture", "subtype": "thought", "text": "Réflexion : l'architecture actuelle est trop complexe", "keywords": ["réflexion", "architecture"]}
+{"id": "cap-013", "category": "capture", "subtype": "note", "text": "Note : le modèle qwen marche mieux pour le code", "keywords": ["note", "modèle", "qwen"]}
+{"id": "cap-014", "category": "capture", "subtype": "reminder", "text": "À faire : relire les PR en attente", "keywords": ["faire", "relire", "PR"]}
+{"id": "cap-015", "category": "capture", "subtype": "todo", "text": "Todo : configurer le backup automatique", "keywords": ["todo", "backup"]}

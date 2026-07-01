@@ -1,0 +1,25 @@
+{"id": "dev-001", "category": "development", "subtype": "feature", "text": "Je veux développer une feature de login pour mon application", "keywords": ["développer", "feature", "login", "application"]}
+{"id": "dev-002", "category": "development", "subtype": "bugfix", "text": "Il y a un bug dans le code, je dois le corriger", "keywords": ["bug", "code", "corriger"]}
+{"id": "dev-003", "category": "development", "subtype": "refactor", "text": "Je dois refactoriser ce module pour améliorer la lisibilité", "keywords": ["refactoriser", "module", "lisibilité"]}
+{"id": "dev-004", "category": "development", "subtype": "test", "text": "Je dois écrire des tests unitaires pour cette fonction", "keywords": ["tests", "unitaires", "fonction"]}
+{"id": "dev-005", "category": "development", "subtype": "feature", "text": "Développe une API REST pour gérer les utilisateurs", "keywords": ["développe", "API", "REST", "utilisateurs"]}
+{"id": "dev-006", "category": "development", "subtype": "bugfix", "text": "L'application plante quand je clique sur le bouton", "keywords": ["application", "plante", "bouton"]}
+{"id": "dev-007", "category": "development", "subtype": "feature", "text": "Je veux implémenter un système de cache Redis", "keywords": ["implémenter", "cache", "Redis"]}
+{"id": "dev-008", "category": "development", "subtype": "bugfix", "text": "Corriger un bug critique en production", "keywords": ["corriger", "bug", "production"]}
+{"id": "dev-009", "category": "development", "subtype": "test", "text": "Ajouter des tests e2e pour le parcours utilisateur", "keywords": ["tests", "e2e", "utilisateur"]}
+{"id": "dev-010", "category": "development", "subtype": "refactor", "text": "Refactoriser le code pour améliorer les performances", "keywords": ["refactoriser", "code", "performances"]}
+{"id": "dev-011", "category": "development", "subtype": "deploy", "text": "Mettre en production la nouvelle version", "keywords": ["production", "version", "deploy"]}
+{"id": "dev-012", "category": "development", "subtype": "feature", "text": "Créer une API pour le frontend", "keywords": ["créer", "API", "frontend"]}
+{"id": "dev-013", "category": "development", "subtype": "bugfix", "text": "L'API retourne une erreur 500", "keywords": ["API", "erreur", "500"]}
+{"id": "dev-014", "category": "development", "subtype": "feature", "text": "Implémenter l'authentification JWT", "keywords": ["implémenter", "authentification", "JWT"]}
+{"id": "dev-015", "category": "development", "subtype": "refactor", "text": "Nettoyer le code legacy", "keywords": ["nettoyer", "code", "legacy"]}
+{"id": "dev-016", "category": "development", "subtype": "test", "text": "Écrire des tests d'intégration", "keywords": ["tests", "intégration"]}
+{"id": "dev-017", "category": "development", "subtype": "feature", "text": "Ajouter un système de notifications push", "keywords": ["ajouter", "notifications", "push"]}
+{"id": "dev-018", "category": "development", "subtype": "bugfix", "text": "La base de données se déconnecte aléatoirement", "keywords": ["base de données", "déconnecte"]}
+{"id": "dev-019", "category": "development", "subtype": "feature", "text": "Développer un tableau de bord admin", "keywords": ["développer", "tableau de bord", "admin"]}
+{"id": "dev-020", "category": "development", "subtype": "refactor", "text": "Optimiser les requêtes SQL", "keywords": ["optimiser", "requêtes", "SQL"]}
+{"id": "dev-021", "category": "development", "subtype": "deploy", "text": "Configurer le pipeline CI/CD", "keywords": ["pipeline", "CI", "CD"]}
+{"id": "dev-022", "category": "development", "subtype": "feature", "text": "Créer un système de paiement Stripe", "keywords": ["créer", "paiement", "Stripe"]}
+{"id": "dev-023", "category": "development", "subtype": "bugfix", "text": "Le formulaire ne valide pas les emails", "keywords": ["formulaire", "valide", "emails"]}
+{"id": "dev-024", "category": "development", "subtype": "test", "text": "Lancer les tests avant le merge", "keywords": ["tests", "merge"]}
+{"id": "dev-025", "category": "development", "subtype": "feature", "text": "Ajouter un mode sombre à l'application", "keywords": ["ajouter", "mode sombre", "application"]}

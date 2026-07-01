@@ -1,0 +1,47 @@
+# Idéation V1 — Document Map
+
+**Version :** v1-formal-ideation  
+**Created :** 2026-04-11  
+**Status :** 🌱 Germination
+
+---
+
+## Machine-Readable Index
+
+```
+application: formal-ideation
+version: v1-formal-ideation
+status: germination
+parent: ferule-core/
+standard: core-standard-v1
+```
+
+---
+
+## File Structure
+
+| Path | Type | Description |
+|------|------|-------------|
+| `../../USER-NOTES.md` | User Notes | Préférences, décisions, instructions utilisateur |
+| `README.md` | Project README | Vue d'ensemble du projet |
+| `phase-1-repair.md` | Phase File | Tâches de réparation/initialisation V1 |
+| `phase-1-technical-debt-to-v2.md` | Technical Debt | Dette technique pour V2 |
+| `reports/bug-reports.md` | Bug Reports | Bugs documentés |
+| `reports/deployment-report.md` | Deployment | Rapport de déploiement |
+
+---
+
+## Startup Sequence (pour agents)
+
+1. Lire `../../USER-NOTES.md` — Instructions utilisateur
+2. Lire `README.md` — Vue d'ensemble
+3. Lire `phase-1-repair.md` — Tâches en cours
+4. Vérifier `reports/` — Bugs et déploiements
+
+---
+
+## Metadata
+
+- **Standard :** Core-Standards V1
+- **Conformité :** ✅ Scaffold initial
+- **Next Phase :** V2 (à définir)

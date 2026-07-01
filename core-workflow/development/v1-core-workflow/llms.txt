@@ -1,0 +1,6 @@
+# Modèles LLM utilisés par core-workflow
+primary: mistral/codestral-latest
+fallbacks:
+  - mistral/codestral-latest       # Tier 2 — coding (gratuit)
+  - claude-opus-4.6                # Tier 3 — heavy reasoning (last resort)
+  - ollama/qwen3-coder:latest      # Tier 5 — local/offline

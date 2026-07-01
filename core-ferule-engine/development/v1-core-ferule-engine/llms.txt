@@ -1,0 +1,82 @@
+# core-ferule-engine — LLM Context
+
+> **Purpose:** Provide LLMs with essential context for working on core-ferule-engine
+
+---
+
+## Project Identity
+
+**Name:** core-ferule-engine  
+**Version:** v1-core-ferule-engine  
+**Role:** Execution engine for Ferule-Core ecosystem  
+**Location:** `ferule-core/core-ferule-engine/`
+
+## Architecture
+
+```
+core-ferule-engine/
+├── run_engine.py              # Python execution engine
+├── requirements.txt           # Python dependencies
+├── core/
+│   ├── rules/                 # Business rules
+│   ├── models/                # Data models
+│   └── workflows/             # Workflow definitions
+├── interfaces/                # External interfaces
+├── nexus-protocol/            # Inter-ferule protocol
+├── scripts/                   # Utility scripts
+├── skill/
+│   └── ferule-core/           # Entry point skill
+│       └── SKILL.md
+└── development/
+    └── v1-core-ferule-engine/
+        ├── README.md
+        ├── USER-NOTES.md
+        └── reports/
+```
+
+## Key Documents
+
+| Document | Purpose |
+|----------|---------|
+| `BLUEPRINT.md` | Full specification (rationalized from SCRATCHPAD.md) |
+| `USER-NOTES.md` | LLM preferences and decisions |
+| `skill/ferule-core/SKILL.md` | Entry point skill (routing) |
+| `development/v1-core-ferule-engine/README.md` | Version documentation |
+
+## Routing Table
+
+| Intent | Target |
+|--------|--------|
+| Mission, Place de Grève | core-squad/ |
+| Norm, structure, taxonomy | core-standard/ |
+| Health, alerts | watchdog/ |
+| Incident report | incidents/ |
+| Cognition, routing | core-cognition/ |
+
+## Current Status
+
+- **Phase:** Foundation (Phase 1)
+- **BLUEPRINT.md:** ✅ Rationalized
+- **USER-NOTES.md:** ✅ Created
+- **SKILL.md:** ✅ Created
+- **development/:** ✅ Scaffolded
+- **Technical Debt:** 7 items (TD-01 to TD-07)
+
+## Working on This Project
+
+1. Read `BLUEPRINT.md` for full specification
+2. Read `USER-NOTES.md` for preferences
+3. Check `development/v1-core-ferule-engine/README.md` for phase status
+4. Update technical debt as items are resolved
+
+## Normative Compliance
+
+This project conforms to **core-standard V2** structure:
+- `BLUEPRINT.md` at root
+- `USER-NOTES.md` derived from BLUEPRINT
+- `skill/<name>/SKILL.md` for entry point
+- `development/v<version>-<app>/` for versioned development
+
+---
+
+*For LLMs: Always read BLUEPRINT.md first, then USER-NOTES.md, before making changes.*

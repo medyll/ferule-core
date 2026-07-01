@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Organizational Structure",
+  "description": "Schema for organizational power structure with normalized indicators",
+  "type": "object",
+  "required": ["name", "people"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Organization name"
+    },
+    "people": {
+      "type": "array",
+      "description": "List of people in the organization",
+      "items": {
+        "type": "object",
+        "required": ["name", "role"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Person's name"
+          },
+          "role": {
+            "type": "string",
+            "description": "Job title or role"
+          },
+          "indicators": {
+            "type": "object",
+            "description": "Normalized indicator values (ind-[group]-[name5])",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            }
+          },
+          "reports_to": {
+            "type": "array",
+            "description": "Names of people this person reports to",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "indicators": {
+      "type": "object",
+      "description": "Registry of defined indicators",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["group", "name", "scale", "definition"],
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "3-letter group code",
+            "pattern": "^[a-z]{3}$"
+          },
+          "name": {
+            "type": "string",
+            "description": "5-letter name code",
+            "pattern": "^[a-z]{5}$"
+          },
+          "scale": {
+            "type": "string",
+            "description": "Scale definition (e.g., '0-3')"
+          },
+          "definition": {
+            "type": "string",
+            "description": "Human-readable definition"
+          }
+        }
+      }
+    }
+  }
+}

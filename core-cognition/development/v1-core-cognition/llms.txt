@@ -1,0 +1,9 @@
+# core-cognition
+
+> OpenClaw listener and intent interpreter — classifies raw intent and routes to Place de Grève.
+
+## Documentation
+
+- [README](./README.md) — Project overview and status
+- [User Notes](./USER-NOTES.md) — User instructions
+- [Bug Reports](./reports/bug-reports.md) — Known bugs

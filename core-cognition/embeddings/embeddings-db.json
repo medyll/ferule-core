@@ -1,0 +1,27 @@
+{
+  "name": "OpenClaw Embeddings Database",
+  "version": "1.0",
+  "created": "2026-04-07T20:41:00Z",
+  "description": "Base de données d'embeddings pour classification d'intention",
+  "provider": "ollama",
+  "model": "nomic-embed-text",
+  "dimensions": 768,
+  "categories": [
+    "authoring",
+    "development",
+    "maturation",
+    "capture"
+  ],
+  "totalEntries": 90,
+  "entriesByCategory": {
+    "authoring": 6,
+    "development": 7,
+    "maturation": 6,
+    "capture": 6
+  },
+  "lastUpdated": "2026-04-08T23:52:28.380Z",
+  "scripts": {
+    "create": "node scripts/create-embeddings.mjs",
+    "query": "node scripts/query-embeddings.mjs --text \"Votre texte\""
+  }
+}

@@ -1,0 +1,11 @@
+# Core Standards V1 — Formatting & Structure Standard
+
+> Initial version of the unified formatting and structure standard for all applications.
+
+## Documentation
+
+- [README](./README.md) — Project overview, structure, and status
+- [Phase 1](./phase-1-repair.md) — Standard consolidation and initial application audit
+- [Technical Debt](./phase-2-technical-debt-to-v2.md) — Outstanding standardization debt
+- [Bug Reports](./reports/bug-reports.md) — Known issues and fixes
+- [User Notes](./USER-NOTES.md) — User instructions and preferences

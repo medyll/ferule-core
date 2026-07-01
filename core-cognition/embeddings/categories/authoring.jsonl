@@ -1,0 +1,26 @@
+{"id": "auth-001", "category": "authoring", "subtype": "book", "text": "Je veux écrire un livre sur un pirate spatial", "keywords": ["écrire", "livre", "pirate", "spatial"]}
+{"id": "auth-002", "category": "authoring", "subtype": "chapter", "text": "Je dois rédiger le chapitre 3 de mon roman", "keywords": ["rédiger", "chapitre", "roman"]}
+{"id": "auth-003", "category": "authoring", "subtype": "character", "text": "J'ai besoin de créer un personnage principal pour mon histoire", "keywords": ["créer", "personnage", "histoire"]}
+{"id": "auth-004", "category": "authoring", "subtype": "worldbuilding", "text": "Je veux développer l'univers de mon livre, les règles magiques et la géographie", "keywords": ["développer", "univers", "livre", "règles"]}
+{"id": "auth-005", "category": "authoring", "subtype": "book", "text": "J'ai une idée de manuscrit à écrire", "keywords": ["manuscrit", "écrire"]}
+{"id": "auth-006", "category": "authoring", "subtype": "dialogue", "text": "Je dois écrire les dialogues entre mes personnages", "keywords": ["écrire", "dialogues", "personnages"]}
+{"id": "auth-007", "category": "authoring", "subtype": "idea", "text": "J'ai une idée de bouquin", "keywords": ["idée", "bouquin"]}
+{"id": "auth-008", "category": "authoring", "subtype": "book", "text": "Dans mon livre sur tel sujet", "keywords": ["livre", "sujet"]}
+{"id": "auth-009", "category": "authoring", "subtype": "idea", "text": "Cette idée m'intéresse, je crois qu'il faudrait en faire un livre", "keywords": ["idée", "livre"]}
+{"id": "auth-010", "category": "authoring", "subtype": "title", "text": "Pour moi un titre de livre intéressant serait", "keywords": ["titre", "livre"]}
+{"id": "auth-011", "category": "authoring", "subtype": "chapter", "text": "Écrire un chapitre sur ce sujet", "keywords": ["écrire", "chapitre", "sujet"]}
+{"id": "auth-012", "category": "authoring", "subtype": "character", "text": "Créer un personnage principal pour mon histoire", "keywords": ["créer", "personnage", "histoire"]}
+{"id": "auth-013", "category": "authoring", "subtype": "worldbuilding", "text": "Décrire un lieu imaginaire", "keywords": ["décrire", "lieu", "imaginaire"]}
+{"id": "auth-014", "category": "authoring", "subtype": "dialogue", "text": "Écrire un dialogue entre deux personnages", "keywords": ["écrire", "dialogue", "personnages"]}
+{"id": "auth-015", "category": "authoring", "subtype": "scene", "text": "Scène d'action avec une poursuite en voiture", "keywords": ["scène", "action", "poursuite"]}
+{"id": "auth-016", "category": "authoring", "subtype": "plot", "text": "Développer l'intrigue de mon roman", "keywords": ["développer", "intrigue", "roman"]}
+{"id": "auth-017", "category": "authoring", "subtype": "character", "text": "Trouver un nom pour mon personnage", "keywords": ["nom", "personnage"]}
+{"id": "auth-018", "category": "authoring", "subtype": "chapter", "text": "Écrire la fin de mon livre", "keywords": ["écrire", "fin", "livre"]}
+{"id": "auth-019", "category": "authoring", "subtype": "revision", "text": "Revoir le premier chapitre", "keywords": ["revoir", "chapitre"]}
+{"id": "auth-020", "category": "authoring", "subtype": "scene", "text": "Ajouter une scène d'exposition", "keywords": ["ajouter", "scène", "exposition"]}
+{"id": "auth-021", "category": "authoring", "subtype": "worldbuilding", "text": "Créer un système magique pour mon monde", "keywords": ["créer", "système", "magique", "monde"]}
+{"id": "auth-022", "category": "authoring", "subtype": "character", "text": "Décrire l'apparence physique de mon protagoniste", "keywords": ["décrire", "apparence", "protagoniste"]}
+{"id": "auth-023", "category": "authoring", "subtype": "scene", "text": "Écrire une scène émotionnelle", "keywords": ["écrire", "scène", "émotionnelle"]}
+{"id": "auth-024", "category": "authoring", "subtype": "character", "text": "Développer le backstory d'un personnage", "keywords": ["développer", "backstory", "personnage"]}
+{"id": "auth-025", "category": "authoring", "subtype": "plot", "text": "Trouver un conflit pour mon histoire", "keywords": ["conflit", "histoire"]}
+{"id": "auth-026", "category": "authoring", "subtype": "scene", "text": "Écrire une scène de combat", "keywords": ["écrire", "scène", "combat"]}

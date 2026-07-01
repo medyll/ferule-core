@@ -1,0 +1,10 @@
+# Watchdog V1
+
+> Independent health monitor for core-ferule ecosystem.
+
+## Documentation
+
+- [README](./README.md) — V1 overview and next steps
+- [Phase 1](./phase-1-repair.md) — 3 implementation tasks (all done)
+- [BLUEPRINT.md](../../BLUEPRINT.md) — Design spec and alert protocol
+- [SKILL.md](../../skill/watchdog/SKILL.md) — Watchdog skill definition

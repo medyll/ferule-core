@@ -1,0 +1,8 @@
+# Core Standard V2
+
+> V2 normative consolidation — resolve V1 technical debt.
+
+## Documentation
+
+- [README](./README.md) — V2 overview and phase 1 steps
+- [Phase 1](./phase-1-repair.md) — 8 repair steps (7 normative TDs + unknown closure)

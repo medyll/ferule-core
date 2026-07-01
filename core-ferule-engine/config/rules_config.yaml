@@ -1,0 +1,22 @@
+file_bus:
+  input_dir: "place-de-greve/missions"
+  output_dir: "ferule-core/results"
+  poll_interval_seconds: 5
+
+logging:
+  level: "INFO"
+  file: "%APPDATA%\\CoreFeruleEngine\\logs\\ferule-core.log"
+
+watchdog:
+  alerts_dir: "watchdog/alerts"
+  notify_target: "core-squad/nexus-protocol"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+
+redis:
+  enabled: false
+  host: "localhost"
+  port: 6379
+  db: 0

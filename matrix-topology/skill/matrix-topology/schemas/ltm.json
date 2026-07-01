@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Topological Language Matrix (LTM)",
+  "description": "Schema for LTM expressions — Constellation, Amass, and Semantic Quarks",
+  "type": "object",
+  "required": ["constellation", "amass", "quarks"],
+  "properties": {
+    "constellation": {
+      "type": "object",
+      "description": "Macro intent — thematic domain",
+      "required": ["name", "weight"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Constellation name (e.g., BIO_URGENCY, LATENT_EXPLORATION)",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "weight": {
+          "type": "number",
+          "description": "Thematic dominance weight",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "amass": {
+      "type": "object",
+      "description": "Clusters of meaning in simultaneous orbit",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      }
+    },
+    "quarks": {
+      "type": "array",
+      "description": "Atomic weight units of meaning (Intensity, Valence, Certainty)",
+      "items": {
+        "type": "number",
+        "minimum": -1.0,
+        "maximum": 1.0
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{"id": "mat-001", "category": "maturation", "subtype": "idea", "text": "J'ai une idée de programme pour gérer les tâches quotidiennes", "keywords": ["idée", "programme", "gérer", "tâches"]}
+{"id": "mat-002", "category": "maturation", "subtype": "program", "text": "Je veux créer une application mobile de productivity", "keywords": ["créer", "application", "mobile", "productivity"]}
+{"id": "mat-003", "category": "maturation", "subtype": "product", "text": "J'ai un concept de startup à développer", "keywords": ["concept", "startup", "développer"]}
+{"id": "mat-004", "category": "maturation", "subtype": "idea", "text": "Je réfléchis à une plateforme de collaboration en ligne", "keywords": ["réfléchis", "plateforme", "collaboration"]}
+{"id": "mat-005", "category": "maturation", "subtype": "program", "text": "Je veux brainstormer sur un nouveau service SaaS", "keywords": ["brainstormer", "service", "SaaS"]}
+{"id": "mat-006", "category": "maturation", "subtype": "product", "text": "J'ai une idée d'application web pour les freelances", "keywords": ["idée", "application", "web", "freelances"]}
+{"id": "mat-007", "category": "maturation", "subtype": "idea", "text": "Idée d'application : un gestionnaire de budget personnel", "keywords": ["idée", "application", "budget"]}
+{"id": "mat-008", "category": "maturation", "subtype": "program", "text": "Et si je créais un jeu mobile ?", "keywords": ["créais", "jeu", "mobile"]}
+{"id": "mat-009", "category": "maturation", "subtype": "concept", "text": "Réflexion sur un système de recommandation IA", "keywords": ["réflexion", "système", "recommandation", "IA"]}
+{"id": "mat-010", "category": "maturation", "subtype": "idea", "text": "Concept : une app de rencontre pour amis", "keywords": ["concept", "app", "rencontre", "amis"]}
+{"id": "mat-011", "category": "maturation", "subtype": "program", "text": "Je pense à un outil de gestion de projet simplifié", "keywords": ["pense", "outil", "gestion", "projet"]}
+{"id": "mat-012", "category": "maturation", "subtype": "product", "text": "Idée de produit : un CRM pour indépendants", "keywords": ["idée", "produit", "CRM", "indépendants"]}
+{"id": "mat-013", "category": "maturation", "subtype": "idea", "text": "Et si on faisait une plateforme de cours en ligne ?", "keywords": ["plateforme", "cours", "ligne"]}
+{"id": "mat-014", "category": "maturation", "subtype": "concept", "text": "Concept : assistant vocal pour personnes âgées", "keywords": ["concept", "assistant", "vocal"]}
+{"id": "mat-015", "category": "maturation", "subtype": "program", "text": "Je veux explorer l'idée d'un réseau social décentralisé", "keywords": ["explorer", "idée", "réseau social"]}
+{"id": "mat-016", "category": "maturation", "subtype": "idea", "text": "Idée : marketplace de services locaux", "keywords": ["idée", "marketplace", "services"]}
+{"id": "mat-017", "category": "maturation", "subtype": "product", "text": "Produit potentiel : tracker d'habitudes quotidien", "keywords": ["produit", "tracker", "habitudes"]}
+{"id": "mat-018", "category": "maturation", "subtype": "concept", "text": "Réflexion : outil de collaboration temps réel", "keywords": ["réflexion", "outil", "collaboration"]}
+{"id": "mat-019", "category": "maturation", "subtype": "program", "text": "Je brainstorm sur une app de voyage personnalisée", "keywords": ["brainstorm", "app", "voyage"]}
+{"id": "mat-020", "category": "maturation", "subtype": "idea", "text": "Idée : générateur de contenu IA pour réseaux sociaux", "keywords": ["idée", "générateur", "contenu", "IA"]}
+{"id": "mat-021", "category": "maturation", "subtype": "program", "text": "Explorateur de fichiers Windows avec sidebar méta, navigation historique local, visualisateur markdown intégré", "keywords": ["explorateur", "fichiers", "Windows", "sidebar", "navigation", "markdown"]}
+{"id": "mat-024", "category": "maturation", "subtype": "program", "text": "Pseudo-HTML solidification : registre composants, écouteur tags, implémentations fantômes, pseudo-canvas flou, pattern LLM à formaliser", "keywords": ["pseudo-html", "registre", "composants", "solidification", "architecture"]}
+{"id": "mat-025", "category": "maturation", "subtype": "program", "text": "Schéma de données central : nom champs + méta + foreign keys, source idae-legacy, documenté dans idae-machine ARCH.md, format uniforme pour toutes apps", "keywords": ["schema", "données", "central", "foreign keys", "idae", "uniforme"]}
+{"id": "mat-026", "category": "maturation", "subtype": "program", "text": "Connecteurs services externes : Amazon, services pro/perso connus, il faut s ouvrir au monde, framework unifié authentification OAuth2 API keys webhooks", "keywords": ["connecteurs", "externes", "Amazon", "services", "OAuth2", "API", "ouverture"]}
