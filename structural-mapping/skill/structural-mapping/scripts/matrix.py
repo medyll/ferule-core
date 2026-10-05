@@ -7,6 +7,7 @@ The nomenclature follows: ind-[group]-[name5]
 """
 
 import json
+import re
 import sys
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass, field, asdict
@@ -160,7 +161,8 @@ def detect_domain(context: str) -> str:
         "media": ["média", "journal", "presse", "tv", "radio", "éditorial", "journaliste"],
         "tech_startup": ["startup", "tech", "logiciel", "développeur", "produit", "cto"],
         "research_lab": ["recherche", "labo", "université", "doctorant", "publication", "scientifique"],
-        "art_collective": ["art", "collectif", "artiste", "créatif", "exposition", "galerie"]
+        "art_collective": ["art", "collectif", "artiste", "créatif", "exposition", "galerie"],
+        "molecule": ["molécule", "atome", "liaison", "alcaloïde", "chimie", "purique"]
     }
     
     scores = {}
@@ -241,7 +243,7 @@ def generate_matrix(org: Organization) -> str:
     
     rows = []
     for name, person in sorted(org.people.items()):
-        values = [str(person.get_indicator(ind_id) or "-") for ind_id in indicator_ids]
+        values = [str(v) if (v := person.get_indicator(ind_id)) is not None else "-" for ind_id in indicator_ids]
         rows.append(f"| {name} | {person.role} | " + " | ".join(values) + " |")
     
     return header + separator + "\n".join(rows)
@@ -289,13 +291,18 @@ def generate_tree(org: Organization, root_name: Optional[str] = None) -> str:
     return build_tree(root, is_root=True)
 
 
+def mermaid_id(name: str) -> str:
+    """Mermaid node ids accept only [A-Za-z0-9_]."""
+    return re.sub(r"\W", "_", name, flags=re.ASCII)
+
+
 def generate_mermaid(org: Organization) -> str:
     """Generate Mermaid JS diagram code."""
     lines = ["graph TD"]
     
     # Add nodes
     for name, person in org.people.items():
-        safe_name = name.replace(" ", "_").replace("-", "_")
+        safe_name = mermaid_id(name)
         label = f"{name}<br/>({person.role})"
         
         # Add top 2 indicator values
@@ -309,9 +316,9 @@ def generate_mermaid(org: Organization) -> str:
     
     # Add edges
     for person in org.people.values():
-        safe_name = person.name.replace(" ", "_").replace("-", "_")
+        safe_name = mermaid_id(person.name)
         for reports_to in person.links_to:
-            safe_reports_to = reports_to.replace(" ", "_").replace("-", "_")
+            safe_reports_to = mermaid_id(reports_to)
             lines.append(f"    {safe_name} --> {safe_reports_to}")
     
     return "\n".join(lines)
@@ -397,63 +404,93 @@ def generate_analysis_report(org: Organization) -> str:
 
 
 # =============================================================================
-# DEMO: FRANC-TIREUR REFERENCE CASE
+# DEMO: CAFFEINE REFERENCE CASE
 # =============================================================================
 
-def demo_franc_tireur() -> Organization:
-    """Create the Franc-Tireur reference case from DISCUSSION.md."""
-    org = Organization(
-        name="Franc-Tireur",
-        context="Hebdomadaire français — rédaction et direction éditoriale"
-    )
-    
-    # Register indicators from the original conversation
-    org.register_indicator("pvr", "ildec", "0-3", "Liberté Décisionnelle — autonomie et impact dans l'organisation")
-    org.register_indicator("ray", "ifrme", "0-3", "Force du Rayonnement Médiatique — influence externe")
-    org.register_indicator("sem", "ipcon", "0-3", "Privatisation des Connaissances — rétention d'expertise")
-    org.register_indicator("sem", "fdcom", "0-3", "Facteur de Diffusion des Compétences — transmission horizontale")
-    
-    # Add people with their indicators
-    org.add_person("Daniel Kretinsky", "Propriétaire (CMI France)")
-    org.people["Daniel Kretinsky"].indicators = {
-        "ind-pvr-ildec": 3, "ind-ray-ifrme": 3, "ind-sem-ipcon": 2, "ind-sem-fdcom": 1
-    }
-    org.people["Daniel Kretinsky"].external_entities = ["EPH (Énergie)", "CMI France (Presse)"]
-    
-    org.add_person("Caroline Fourest", "Directrice de la Rédaction", reports_to=["Daniel Kretinsky"])
-    org.people["Caroline Fourest"].indicators = {
-        "ind-pvr-ildec": 3, "ind-ray-ifrme": 2, "ind-sem-ipcon": 3, "ind-sem-fdcom": 2
-    }
-    org.people["Caroline Fourest"].external_entities = ["France Télévisions", "Éditions Grasset"]
-    
-    org.add_person("Raphaël Enthoven", "Conseiller de la Rédaction", reports_to=["Caroline Fourest"])
-    org.people["Raphaël Enthoven"].indicators = {
-        "ind-pvr-ildec": 2, "ind-ray-ifrme": 2, "ind-sem-ipcon": 3, "ind-sem-fdcom": 1
-    }
-    org.people["Raphaël Enthoven"].external_entities = ["LCI / TF1", "Éditions de l'Observatoire"]
-    
-    org.add_person("Christophe Barbier", "Directeur Éditorial", reports_to=["Caroline Fourest"])
-    org.people["Christophe Barbier"].indicators = {
-        "ind-pvr-ildec": 2, "ind-ray-ifrme": 3, "ind-sem-ipcon": 1, "ind-sem-fdcom": 3
-    }
-    org.people["Christophe Barbier"].external_entities = ["BFMTV / Altice", "Théâtre"]
-    
-    org.add_person("Eric Decouty", "Directeur Délégué", reports_to=["Christophe Barbier"])
-    org.people["Eric Decouty"].indicators = {
-        "ind-pvr-ildec": 1, "ind-ray-ifrme": 1, "ind-sem-ipcon": 2, "ind-sem-fdcom": 3
-    }
-    org.people["Eric Decouty"].external_entities = ["Éditions du Seuil", "Indépendant"]
-    
-    org.analysis_notes = """
-**Observation clé:** Inversion entre pouvoir interne et rayonnement externe.
-- Barbier: IRM (3) > ILD (2) — plus puissant sur les plateaux que dans la rédaction
-- Fourest: ILD (3) > IRM (2) — verrouille le pouvoir interne, rayonnement plus sélectif
+# Molecular domain: the 3 axes (power / knowledge flow / external reach) are
+# transposed to a molecule. Actors are structural groups, not people.
+DOMAIN_TEMPLATES["molecule"] = {
+    "groups": {
+        "rea": "Réactivité — quel groupe dicte le comportement de la molécule",
+        "ele": "Électronique — rétention vs partage des électrons",
+        "ext": "Externe — interactions avec le solvant, les récepteurs",
+        "met": "Métabolisme — fragilité face aux enzymes"
+    },
+    "example_indicators": [
+        ("rea", "sitac", "Site Actif — poids dans la reconnaissance et la réactivité"),
+        ("ext", "hbond", "Liaison Externe — accepteur/donneur H, polarité exposée"),
+        ("ele", "local", "Localisation Électronique — doublets retenus hors système π"),
+        ("ele", "delox", "Délocalisation — participation au système π conjugué"),
+        ("met", "labil", "Labilité Métabolique — cible de transformation enzymatique")
+    ]
+}
 
-**Flux de connaissances:**
-- Kretinsky: rétention stratégique (ipcon:2, fdcom:1)
-- Barbier/Decouty: forte diffusion (fdcom:3) — transmettent et horizontalisent
+
+def demo_cafeine() -> Organization:
+    """Create the caffeine reference case (1,3,7-trimethylxanthine, PubChem CID 2519).
+
+    Scores are qualitative (0-3). They must be checked against computed
+    descriptors (PubChem / RDKit) — that check is the point of the case.
+    """
+    org = Organization(
+        name="Caféine",
+        context="Molécule — 1,3,7-triméthylxanthine, C8H10N4O2, alcaloïde purique"
+    )
+
+    for group, name, definition in DOMAIN_TEMPLATES["molecule"]["example_indicators"]:
+        org.register_indicator(group, name, "0-3", definition)
+
+    def add(name, role, scores, reports_to=None, external=None, notes=""):
+        org.add_person(name, role, reports_to=reports_to, external_entities=external)
+        org.people[name].indicators = dict(zip(
+            ["ind-rea-sitac", "ind-ext-hbond", "ind-ele-local", "ind-ele-delox", "ind-met-labil"],
+            scores
+        ))
+        org.people[name].notes = notes
+
+    add("Noyau xanthine", "Squelette purique bicyclique plan", [3, 1, 0, 3, 0],
+        external=["Récepteurs adénosine A1/A2A (mimétisme purine)"],
+        notes="Le squelette mime l'adénosine : antagonisme des récepteurs A1/A2A")
+    add("Cycle imidazole", "Cycle à 5 (N7, C8, N9)", [2, 2, 1, 3, 0],
+        reports_to=["Noyau xanthine"])
+    add("Cycle pyrimidinedione", "Cycle à 6 (N1, C2, N3, C6)", [2, 2, 1, 3, 0],
+        reports_to=["Noyau xanthine"])
+    add("N9", "Azote imidazole non substitué", [2, 3, 2, 1, 0],
+        reports_to=["Cycle imidazole"],
+        external=["Eau (solvatation)", "Site de protonation (pKa ≈ 0,6)"],
+        notes="Doublet sp2 dans le plan, hors système π : principal accepteur H")
+    add("N7-CH3", "Méthyle sur azote imidazole", [1, 0, 0, 2, 1],
+        reports_to=["Cycle imidazole"],
+        external=["CYP1A2 → théophylline (~4 %)"])
+    add("C6=O", "Carbonyle", [2, 2, 1, 2, 0],
+        reports_to=["Cycle pyrimidinedione"],
+        external=["Accepteur H"])
+    add("C2=O", "Carbonyle", [1, 2, 1, 2, 0],
+        reports_to=["Cycle pyrimidinedione"],
+        external=["Accepteur H"])
+    add("N1-CH3", "Méthyle sur azote amide", [1, 0, 0, 2, 2],
+        reports_to=["Cycle pyrimidinedione"],
+        external=["CYP1A2 → théobromine (~12 %)"])
+    add("N3-CH3", "Méthyle sur azote amide", [1, 0, 0, 2, 3],
+        reports_to=["Cycle pyrimidinedione"],
+        external=["CYP1A2 → paraxanthine (~84 %)"])
+
+    org.analysis_notes = """
+**Observation clé :** découplage pouvoir / rayonnement, comme dans une organisation.
+- Noyau xanthine : sitac 3, hbond 1 — il « décide » (forme reconnue par le récepteur) sans interagir lui-même.
+- N9 : hbond 3 — principal porte-parole vers l'extérieur (solvant, protonation).
+
+**Flux électronique :**
+- Cycles et noyau : delox 3 — le savoir est partagé (système π conjugué).
+- N9 : local 2 — doublet retenu hors du système π, d'où son rôle d'accepteur.
+
+**Fragilité :** les trois méthyles sont les points faibles (labil). N3-CH3 domine :
+la N3-déméthylation par CYP1A2 donne la paraxanthine, métabolite majoritaire.
+
+**À vérifier :** confronter les scores aux descripteurs calculés (TPSA, accepteurs/donneurs H,
+charges partielles) via PubChem CID 2519 ou RDKit.
 """
-    
+
     return org
 
 
@@ -464,11 +501,11 @@ def demo_franc_tireur() -> Organization:
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "--demo":
         print("=" * 60)
-        print("STRUCTURAL MAPPING — Franc-Tireur Demo")
+        print("STRUCTURAL MAPPING — Caféine Demo")
         print("=" * 60)
         print()
         
-        org = demo_franc_tireur()
+        org = demo_cafeine()
         
         print("## Contexte")
         print(f"**Organisation:** {org.name}")
@@ -510,7 +547,7 @@ def main():
         print("Usage: python matrix.py [--demo]")
         print()
         print("Options:")
-        print("  --demo    Run the Franc-Tireur reference case")
+        print("  --demo    Run the caffeine reference case")
         print()
         print("Example:")
         print("  python matrix.py --demo")

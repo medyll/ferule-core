@@ -100,7 +100,7 @@ The directory serves three roles simultaneously:
 | **Nomenclature** | `ind-[group]-[name5]` — normalized indicators on 0-3 scale |
 | **Indicator Groups** | pvr (internal power), ray (external reach), sem (knowledge) |
 | **Outputs** | Synthesis table, arborescence (.md), Mermaid diagram |
-| **Reference Case** | Franc-Tireur editorial staff (first instance) |
+| **Reference Case** | Caffeine molecule (replaces the original Franc-Tireur case) |
 
 ### 7. Openclaw-Maintenance — Systems Maintainer
 

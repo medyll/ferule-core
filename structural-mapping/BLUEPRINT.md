@@ -32,16 +32,19 @@
 
 ---
 
-## Indicateurs de Référence (Cas Franc-Tireur)
+## Indicateurs de Référence (Cas Caféine)
 
-Ces 4 indicateurs sont le **résultat** de l'analyse de Franc-Tireur, pas un template universel :
+L'objet d'étude de référence est une molécule : la caféine (PubChem CID 2519). Les 3 axes se transposent — pouvoir → site réactif, flux de connaissances → flux d'électrons, rayonnement → interactions externes. Ces 5 indicateurs sont le **résultat** de cette analyse, pas un template universel :
 
 | ID | Groupe | Nom | Échelle | Définition |
 |----|--------|-----|---------|------------|
-| `ind-pvr-ildec` | `pvr` (pouvoir interne) | `ildec` (Liberté Décisionnelle) | 0–3 | Autonomie et impact décisionnel dans l'organisation |
-| `ind-ray-ifrme` | `ray` (rayonnement externe) | `ifrme` (Force du Rayonnement Médiatique) | 0–3 | Influence médiatique externe — apparitions, rôle, puissance du groupe hébergeur |
-| `ind-sem-ipcon` | `sem` (sémantique/connaissance) | `ipcon` (Privatisation des Connaissances) | 0–3 | Degré de rétention ou d'exclusivité de l'expertise |
-| `ind-sem-fdcom` | `sem` (sémantique/connaissance) | `fdcom` (Facteur de Diffusion des Compétences) | 0–3 | Capacité à transmettre et horizontaliser le savoir-faire |
+| `ind-rea-sitac` | `rea` (réactivité) | `sitac` (Site Actif) | 0–3 | Poids du groupe dans la reconnaissance et la réactivité |
+| `ind-ext-hbond` | `ext` (externe) | `hbond` (Liaison Externe) | 0–3 | Accepteur/donneur H, polarité exposée au solvant ou au récepteur |
+| `ind-ele-local` | `ele` (électronique) | `local` (Localisation Électronique) | 0–3 | Doublets retenus hors système π |
+| `ind-ele-delox` | `ele` (électronique) | `delox` (Délocalisation) | 0–3 | Participation au système π conjugué |
+| `ind-met-labil` | `met` (métabolisme) | `labil` (Labilité Métabolique) | 0–3 | Cible de transformation enzymatique (CYP1A2) |
+
+Les scores sont qualitatifs et vérifiables contre les descripteurs calculés (PubChem, RDKit) : c'est la vérité de terrain qui manquait au premier cas (organigramme non sourcé).
 
 ### Échelle de Référence
 
@@ -132,7 +135,7 @@ Au sein de `core-ferule`, `structural-mapping` est **l'organe de perception des 
 
 | Pattern | Signification |
 |---------|---------------|
-| **Inverse interne/externe** | Un acteur peut avoir fort pouvoir interne mais faible rayonnement (ou l'inverse) — ex: Barbier vs Fourest |
+| **Inverse interne/externe** | Un acteur peut avoir fort pouvoir interne mais faible rayonnement (ou l'inverse) — ex: noyau xanthine (sitac:3, hbond:1) vs N9 (hbond:3) |
 | **Knowledge hoarding** | `ipcon` élevé + `fdcom` bas = goulot d'étranglement cognitif |
 | **Profil équilibré** | Scores similaires sur tous les indicateurs = généraliste |
 | **Profil spécialisé** | Variations extrêmes = rôle de niche, potentiellement fragile |
@@ -145,7 +148,7 @@ Au sein de `core-ferule`, `structural-mapping` est **l'organe de perception des 
 | Composant | Status |
 |-----------|--------|
 | Nomenclature `ind-[groupe]-[nom5]` | ✅ Définie |
-| Cas de référence (Franc-Tireur) | ✅ Complet (5 personnes, 4 indicateurs) |
+| Cas de référence (Caféine) | ✅ Complet (9 groupes structuraux, 5 indicateurs) |
 | Générateur dynamique d'indicateurs | ⏳ À implémenter |
 | Moteur d'inférence LLM | ⏳ À implémenter |
 | Skill Hermes | ✅ Scaffold créé |
@@ -164,7 +167,7 @@ Au sein de `core-ferule`, `structural-mapping` est **l'organe de perception des 
 
 ## Pitfalls
 
-- **Ne pas figer les indicateurs** — Franc-Tireur a produit `pvr/ray/sem`, mais un labo produirait `acad/fund/collab`
+- **Ne pas figer les indicateurs** — la caféine a produit `rea/ele/ext/met`, mais un labo produirait `acad/fund/collab`
 - **Ne pas confondre titre et pouvoir** — évaluer l'impact réel, pas l'intitulé du poste
 - **Contexte avant tout** — les indicateurs sont relatifs à l'organisation, pas absolus
 - **Dynamique temporelle** — les indicateurs peuvent shift pendant les crises ou réorganisations

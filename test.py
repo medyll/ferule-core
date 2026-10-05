@@ -18,7 +18,9 @@ def run_test(name, command, expected_in_output=None):
     print(f"Command: {command}")
     print()
     
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
+    result = subprocess.run(command, shell=True, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace", env=env)
     
     print(result.stdout[:2000] if len(result.stdout) > 2000 else result.stdout)
     
@@ -48,7 +50,7 @@ def main():
     tests_total += 1
     if run_test(
         "Matrix Topology — Demo Mode",
-        f"python3 {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py --demo",
+        f"\"{sys.executable}\" {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py --demo",
         "BIO_URGENCY"
     ):
         tests_passed += 1
@@ -57,7 +59,7 @@ def main():
     tests_total += 1
     if run_test(
         "Matrix Topology — Single Text",
-        f"python3 {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py \"Je réfléchis à un concept abstrait\"",
+        f"\"{sys.executable}\" {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py \"Je réfléchis à un concept abstrait\"",
         "ABSTRACT_HEURISTICS"
     ):
         tests_passed += 1
@@ -66,7 +68,7 @@ def main():
     tests_total += 1
     if run_test(
         "Matrix Topology — List Constellations",
-        f"python3 {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py --constellations",
+        f"\"{sys.executable}\" {BASE_DIR}/matrix-topology/skill/matrix-topology/scripts/encode.py --constellations",
         "LATENT_EXPLORATION"
     ):
         tests_passed += 1
@@ -74,9 +76,9 @@ def main():
     # Test 4: Structural Mapping - Demo
     tests_total += 1
     if run_test(
-        "Structural Mapping — Franc-Tireur Demo",
-        f"python3 {BASE_DIR}/structural-mapping/skill/structural-mapping/scripts/matrix.py --demo",
-        "ind-pvr-ildec"
+        "Structural Mapping — Caféine Demo",
+        f"\"{sys.executable}\" {BASE_DIR}/structural-mapping/skill/structural-mapping/scripts/matrix.py --demo",
+        "ind-rea-sitac"
     ):
         tests_passed += 1
     
@@ -84,7 +86,7 @@ def main():
     tests_total += 1
     if run_test(
         "LLM Indicators — Demo Mode",
-        f"python3 {BASE_DIR}/structural-mapping/skill/structural-mapping/scripts/llm_indicators.py --demo",
+        f"\"{sys.executable}\" {BASE_DIR}/structural-mapping/skill/structural-mapping/scripts/llm_indicators.py --demo",
         "tech_startup"
     ):
         tests_passed += 1

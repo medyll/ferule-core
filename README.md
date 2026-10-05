@@ -139,7 +139,7 @@ python3 structural-mapping/skill/structural-mapping/scripts/llm_indicators.py "S
 # Lister les domaines
 python3 structural-mapping/skill/structural-mapping/scripts/llm_indicators.py --domains
 
-# Demo Franc-Tireur (matrix.py)
+# Demo Caféine (matrix.py)
 python3 structural-mapping/skill/structural-mapping/scripts/matrix.py --demo
 ```
 
@@ -196,7 +196,7 @@ python3 test.py
 🧪 TEST: Matrix Topology — Demo Mode        ✅
 🧪 TEST: Matrix Topology — Single Text       ✅
 🧪 TEST: Matrix Topology — List Constellations ✅
-🧪 TEST: Structural Mapping — Franc-Tireur   ✅
+🧪 TEST: Structural Mapping — Caféine        ✅
 🧪 TEST: LLM Indicators — Demo Mode          ✅
 🧪 TEST: Dashboard HTML                      ✅
 🧪 TEST: Dashboard 3D HTML                   ✅
@@ -238,7 +238,7 @@ python3 test.py
 ## 📚 Sources
 
 - **matrix-topology** : `matrix-topology/sources/DISCUSSION.md` — Conversation Gemini sur LTM
-- **structural-mapping** : `structural-mapping/sources/DISCUSSION.md` — Conversation Franc-Tireur
+- **structural-mapping** : `structural-mapping/sources/DISCUSSION.md` — Conversation d'origine (cas Franc-Tireur, remplacé par la caféine)
 
 ---
 

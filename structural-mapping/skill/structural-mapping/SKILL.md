@@ -121,19 +121,25 @@ Le module inclut des templates pré-définis pour différents domaines :
 | **research_lab** | `acad`, `fund`, `ment`, `coll` | `publi`, `grant`, `studt`, `netwk` |
 | **art_collective** | `creat`, `prod`, `diff`, `fin` | `artis`, `logis`, `visib`, `mecen` |
 
-## Référence: Cas Franc-Tireur
+## Référence: Cas Caféine
 
-Extrait de la discussion originelle (DISCUSSION.md) — 5 personnalités, 4 indicateurs :
+Molécule (1,3,7-triméthylxanthine, PubChem CID 2519). Les acteurs sont des groupes structuraux, pas des personnes. 9 acteurs, 5 indicateurs :
 
-| Person | ind-pvr-ildec | ind-ray-ifrme | ind-sem-ipcon | ind-sem-fdcom |
-|--------|:---:|:---:|:---:|:---:|
-| Daniel Kretinsky | 3 | 3 | 2 | 1 |
-| Caroline Fourest | 3 | 2 | 3 | 2 |
-| Raphaël Enthoven | 2 | 2 | 3 | 1 |
-| Christophe Barbier | 2 | 3 | 1 | 3 |
-| Eric Decouty | 1 | 1 | 2 | 3 |
+| Groupe | ind-rea-sitac | ind-ext-hbond | ind-ele-local | ind-ele-delox | ind-met-labil |
+|--------|:---:|:---:|:---:|:---:|:---:|
+| Noyau xanthine | 3 | 1 | 0 | 3 | 0 |
+| Cycle imidazole | 2 | 2 | 1 | 3 | 0 |
+| Cycle pyrimidinedione | 2 | 2 | 1 | 3 | 0 |
+| N9 | 2 | 3 | 2 | 1 | 0 |
+| C6=O | 2 | 2 | 1 | 2 | 0 |
+| C2=O | 1 | 2 | 1 | 2 | 0 |
+| N1-CH3 | 1 | 0 | 0 | 2 | 2 |
+| N3-CH3 | 1 | 0 | 0 | 2 | 3 |
+| N7-CH3 | 1 | 0 | 0 | 2 | 1 |
 
-**Observation clé:** Inversion interne/externe — Barbier a plus d'influence externe (ifrme:3) que de pouvoir interne (ildec:2), tandis que Fourest verrouille le pouvoir interne (ildec:3) avec un rayonnement plus sélectif (ifrme:2).
+**Observation clé:** Découplage pouvoir/rayonnement — le noyau xanthine « décide » (sitac:3, forme reconnue par les récepteurs de l'adénosine) sans interagir lui-même (hbond:1) ; N9 porte la parole vers l'extérieur (hbond:3).
+
+**Vérité de terrain:** les scores sont qualitatifs et doivent être confrontés aux descripteurs calculés (PubChem, RDKit). C'est ce qui rend le cas testable.
 
 ## Échelle de Référence
 
@@ -164,7 +170,7 @@ Extrait de la discussion originelle (DISCUSSION.md) — 5 personnalités, 4 indi
 
 ## Pitfalls
 
-- **Ne pas figer les indicateurs** — Franc-Tireur a produit `pvr/ray/sem`, mais un labo produirait `acad/fund/collab`
+- **Ne pas figer les indicateurs** — la caféine a produit `rea/ele/ext/met`, mais un labo produirait `acad/fund/collab`
 - **Ne pas confondre titre et pouvoir** — évaluer l'impact réel, pas l'intitulé du poste
 - **Contexte avant tout** — les indicateurs sont relatifs à l'organisation, pas absolus
 - **Dynamique temporelle** — les indicateurs peuvent shift pendant les crises ou réorganisations
@@ -174,7 +180,7 @@ Extrait de la discussion originelle (DISCUSSION.md) — 5 personnalités, 4 indi
 ```bash
 cd /mnt/d/development/ferule-core/structural-mapping/skill/structural-mapping
 
-# Demo Franc-Tireur
+# Demo Caféine
 python3 scripts/matrix.py --demo
 
 # Vérifier la détection de domaine
