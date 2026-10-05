@@ -30,7 +30,6 @@ The directory serves three roles simultaneously:
 | [`behaviour.md`](./behaviour.md) | Part B — Agent startup, maintenance, crisis protocol |
 | [`governance.md`](./governance.md) | Part C — Norm governance, pull cycle, versioning |
 | [core-standard/](#1-core-standard--the-normalization-hub) | Normalization hub — commands, validator, templates |
-| [core-squad/](#2-core-squad--orchestrator--mission-control) | OpenClaw master orchestrator and mission control |
 | [place-de-greve/](#3-place-de-greve--autonomous-mission-queue) | Autonomous mission queue and BMAD orchestrator |
 | [registry-mind/](#4-registry-mind--android-cognitive-sensor) | Android 16 cognitive capture sensor |
 | [token-strategie/](#5-token-strategie--cost-aware-llm-routing) | Cost-aware LLM routing strategy |
@@ -48,17 +47,6 @@ The directory serves three roles simultaneously:
 | **check-structure.mjs** | Zero-dependency structure validator — scans all applications for compliance |
 | **Templates/** | 6 templates: README, phase, bug report, technical debt, deployment report, prompts |
 | **Pull cycle** | Practices emerge from real applications → evaluated via `core-normalize` → integrated into standard or logged as technical debt |
-
-### 2. Core-Squad — Orchestrator & Mission Control
-
-| Sub-element | Role |
-|-------------|------|
-| **index.mjs** | Main entry point — reads `ocm-INSTRUCTIONS.md`, executes commands, updates status report |
-| **OCM Protocol** | File-based command interface: `OCM-SIMULATE` (preview) → `OCM-PROCEED` (execute) |
-| **Maintenance Scanner** | Generic health scanner for queue, YAML, JSON, and generic text targets |
-| **HEARTBEAT.md** | 6 automated health checks: queue integrity, scanner, watcher, recent activity, backups, stale missions |
-| **Sub-Agent Model** | Strict parent-child laws — no auto-inheritance, explicit tool whitelisting, audit trail logging |
-| **Escalation Levels** | Level 1 (direct fix), Level 2 (delegate to sub-agent), Level 3 (pause + human intervention) |
 
 ### 3. Place de Grève — Autonomous Mission Queue
 
@@ -180,7 +168,6 @@ Agent may tidy if asked                 [core-rationalize] (human-triggered) Pha
 | Component | Status | Notes |
 |-----------|--------|-------|
 | **Core-Standards** | V1 operational | Phase 1 complete, phase 2 (technical debt) planned |
-| **Core-Squad** | V1 operational | Initialization implemented, event loop pending |
 | **Place de Grève** | V3 deployed, V6 in development | 26+ versions of the norm, midnight investigation complete |
 | **Registry-Mind** | V1 scaffolded | BLUEPRINT defined, Kotlin spec complete |
 | **Token-Strategie** | V1 scaffolded | Implementation pending |

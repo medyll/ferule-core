@@ -34,6 +34,16 @@ ferule-core/
 │
 ├── dashboard.html                  # Interface 2D complète
 ├── dashboard-3d.html               # Visualisation 3D avec Three.js ✨
+├── structure.md / behaviour.md / governance.md   # La norme (parties A, B, C)
+├── atlas.md                        # Audit historique (avril 2026)
+│
+├── core-standard/                  # Moteur normatif — validateur check-structure.mjs, templates
+├── core-cognition/                 # Écoute et routage de l'intention (métacognition)
+├── core-ferule-engine/             # Moteur d'exécution Python (règles YAML)
+├── formal-ideation/                # Capture d'idées brutes
+├── machinery/                      # Classification (embryonnaire)
+├── heart-flow/                     # (embryonnaire)
+├── incidents/                      # Jurisprudence d'agents (Killing Joe, token crisis)
 │
 ├── matrix-topology/                # Langage Topologique Matriciel (LTM)
 │   ├── BLUEPRINT.md
@@ -56,6 +66,16 @@ ferule-core/
         │   └── llm_indicators.py   # LLM indicators ✨
         └── schemas/structure.json
 ```
+
+### Convention : la triade
+
+Chaque module (ou sous-module) porte trois fichiers qui documentent ce qui a initié son code :
+
+| Fichier | Rôle |
+|---------|------|
+| `SCRATCHPAD.md` | La pensée d'origine |
+| `BLUEPRINT.md` | La mise en œuvre |
+| `USER-NOTES.md` | Les remarques à destination du LLM qui relie le tout |
 
 ---
 

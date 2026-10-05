@@ -39,8 +39,7 @@ function isTransient(entry) {
   const ext = entry.slice(entry.lastIndexOf('.'));
   if (TRANSIENT_EXTENSIONS.has(ext)) return true;
   // Skip known doc types that aren't structural elements
-  if (entry.startsWith('HEARTBEAT.') || entry.startsWith('phase-') || entry.startsWith('llms.')) return true;
-  if (entry.startsWith('ocm-')) return true;  // OCM coordination files live next to core-squad/
+  if (entry.startsWith('phase-') || entry.startsWith('llms.')) return true;
   return false;
 }
 
@@ -171,7 +170,7 @@ function scanApplications() {
     for (const entry of appRootEntries) {
       if (isTransient(entry)) continue;
       // Known app-root elements
-      const appRootKnown = new Set(['development', 'contexts', 'USER-NOTES.md', 'README.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'skill', '.gitkeep', 'templates', 'index.mjs', 'package.json', 'CLAW.md', 'HEARTBEAT.md']);
+      const appRootKnown = new Set(['development', 'contexts', 'USER-NOTES.md', 'README.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'skill', '.gitkeep', 'templates', 'index.mjs', 'package.json', 'CLAW.md']);
       if (!appRootKnown.has(entry) && !KNOWN_DIRS.has(entry) && !KNOWN_FILES.has(entry)) {
         reportUnknown(appDir, entry, appPath);
       }
@@ -399,8 +398,7 @@ function printReport() {
     if (FORMALIZE) {
       formalizeUnknowns();
     } else {
-      console.log(`  → Run with --formalize to auto-create TD entries in core-standard debt file.
-  → See \`core-squad/ocm-*.md\` for agent coordination instructions (non-structural, user-orchestrated)\n`);
+      console.log(`  → Run with --formalize to auto-create TD entries in core-standard debt file.\n`);
     }
   }
 
@@ -421,5 +419,5 @@ printReport();
 // node check-structure.mjs [path-to-core-ferule]
 // node check-structure.mjs [path-to-core-ferule] --formalize
 //
-// Note: HEARTBEAT.md, phase-*.md, llms.txt, ocm-*.md are intentionally ignored
+// Note: phase-*.md, llms.txt are intentionally ignored
 // — they are documentation/coordination files, not structural elements.

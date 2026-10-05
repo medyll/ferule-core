@@ -27,7 +27,6 @@ Adding a domain to the registry automatically creates a new command.
 | `[idee]` | `capture` | `[idee] app de gestion de notes` |
 | `[livre]` | `authoring` | `[livre] roman sur l'IA et la mémoire` |
 | `[projet]` | `development` | `[projet] idae-machine avancement` |
-| `[status]` | `core-squad` | `[status]` |
 | `[maturation]` | `maturation` | `[maturation] concept de marketplace` |
 
 ## Natural Language Detection (Dynamic Mode)
@@ -40,9 +39,7 @@ If no explicit command is given, `core-cognition` detects intent from free text.
 |---------|----------------|
 | `"idée [nouvelle] ..."` | `capture` ou `authoring` selon contexte |
 | `"projet <nom> [consulter|avancer|status]"` | `development` |
-| `"où en sont mes projets"` | `core-squad` |
 | `"livre / roman / écrire ..."` | `authoring` |
-| `"relancer / restart / watcher"` | `core-squad` |
 
 ### Ambiguity protocol
 

@@ -50,7 +50,7 @@ core-cognition's secondary role is to enable **system self-awareness**: the core
 
 | Human Component | System Equivalent |
 |-----------------|-------------------|
-| **Declarative knowledge** (self-awareness) | system state awareness via `ocm-audit-trail.log`, `ocm-STATUS-REPORT.md` |
+| **Declarative knowledge** (self-awareness) | system state awareness via its own logs (`logs are cognition`) |
 | **Procedural regulation** (planning, monitoring, evaluating) | mission planning, health monitoring via `check-structure.mjs`, post-action evaluation |
 | **Metacognitive experiences** (feeling of knowing, fluency) | confidence scores on classification, validation pass/fail signals |
 | **Self-questioning** | ambiguity detection → human confirmation request |
@@ -67,7 +67,6 @@ Metacognition is a stronger predictor of success than raw processing power. A sy
 | `USER-NOTES.md` | Routing decisions, domain constraints, metacognition principle |
 | `machinery/development/v1-machinery/classifier.mjs` | Classification engine — read before any routing |
 | `place-de-greve/` | Mission submission target |
-| `core-squad/ocm-*.md` | Communication protocol with orchestrator |
 
 ## Current State
 

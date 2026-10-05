@@ -47,7 +47,6 @@ core-ferule-engine/
 
 | Intent | Target |
 |--------|--------|
-| Mission, Place de Grève | core-squad/ |
 | Norm, structure, taxonomy | core-standard/ |
 | Incident report | incidents/ |
 | Cognition, routing | core-cognition/ |

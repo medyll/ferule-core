@@ -2,7 +2,6 @@
 name: ferule-core
 description: |-
   Point d'entrée métier pour Ferule-Core. Écoute, interprète, route vers la ferule compétente.
-  - Vers core-squad: missions, orchestration, Place de Grève
   - Vers core-standard: normes, taxonomie, validation
   - Vers incidents: rapports d'incidents critiques
 argument-hint: "mission, norm, health, incident"
@@ -19,7 +18,6 @@ user-invocable: true
 
 | Intent | Cible | Fichier |
 |--------|-------|---------|
-| Mission, Place de Grève | `core-squad/` | `ocm-INSTRUCTIONS.md` |
 | Norme, structure, taxonomie | `core-standard/` | `SKILL.md` |
 | Incident report | `incidents/` | `killing-joe.md` |
 | Cognition, routing | `core-cognition/` | `BLUEPRINT.md` |
@@ -54,7 +52,6 @@ Aucune commande directe — **délègue exclusivement** vers la ferule compéten
 
 | Ferule | Relationship |
 |--------|--------------|
-| `core-squad/` | Routes missions to orchestrator |
 | `core-standard/` | Enforces norms defined by standard |
 | `incidents/` | Logs critical failures |
 | `core-cognition/` | Listening and routing layer |

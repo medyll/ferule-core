@@ -40,13 +40,12 @@ core-ferule-engine/
 
 | Element | Why Removed |
 |---------|-------------|
-| Cron hooks | Watchdog gère la santé |
+| Cron hooks | Hors scope V1 |
 | Redis events | File bus suffit |
 | Event hooks | data_field suffit |
 | Hook actions | Route suffit |
 | `/metrics`, `/skills` | API minimale |
 | Pydantic models | Validation simple |
-| Watchdog listener | Watchdog autonome |
 | `core/models/` | Inline dans engine.py |
 | `core/workflows/` | Pas de workflows V1 |
 | `interfaces/` | Pas d'interfaces V1 |
@@ -80,7 +79,6 @@ core-ferule-engine/
 
 | Intent | Target |
 |--------|--------|
-| Mission, Place de Grève | `core-squad/` |
 | Norm, structure, taxonomy | `core-standard/` |
 | Incident report | `incidents/` |
 
@@ -239,7 +237,6 @@ core-ferule-engine/
 
 | Ferule | Relationship |
 |--------|--------------|
-| `core-squad/` | Routes missions to orchestrator |
 | `core-standard/` | Enforces norms defined by standard |
 | `incidents/` | Logs critical failures |
 

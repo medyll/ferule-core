@@ -10,7 +10,7 @@
 `core-ferule-engine` is the **execution engine** of Ferule-Core:
 - Receives incoming requests
 - Interprets intent
-- Routes to appropriate ferule (core-squad, core-standard)
+- Routes to appropriate ferule (core-standard)
 - Executes normative rules via Python engine
 
 ## Key Files
@@ -30,7 +30,6 @@
 
 | Intent | Target |
 |--------|--------|
-| Mission, Place de Grève | core-squad/ |
 | Norm, structure, taxonomy | core-standard/ |
 | Incident report | incidents/ |
 

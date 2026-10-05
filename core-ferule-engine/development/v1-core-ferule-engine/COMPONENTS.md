@@ -69,7 +69,7 @@ name: rule_name
 condition: "data.priority > 1"
 actions:
   - type: route
-    target: "core-squad"
+    target: "core-standard"
     payload: "{{data}}"
 ```
 
@@ -88,7 +88,6 @@ actions:
 
 | Intent | Target |
 |--------|--------|
-| Mission | `core-squad/` |
 | Norme | `core-standard/` |
 | Incidents | `incidents/` |
 
