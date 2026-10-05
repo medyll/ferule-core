@@ -30,7 +30,7 @@ The directory serves three roles simultaneously:
 | [`behaviour.md`](./behaviour.md) | Part B — Agent startup, maintenance, crisis protocol |
 | [`governance.md`](./governance.md) | Part C — Norm governance, pull cycle, versioning |
 | [core-standard/](#1-core-standard--the-normalization-hub) | Normalization hub — commands, validator, templates |
-| [place-de-greve/](#3-place-de-greve--autonomous-mission-queue) | Autonomous mission queue and BMAD orchestrator |
+| [mission-queue/](#3-mission-queue--autonomous-mission-queue) | Autonomous mission queue and BMAD orchestrator |
 | [registry-mind/](#4-registry-mind--android-cognitive-sensor) | Android 16 cognitive capture sensor |
 | [token-strategie/](#5-token-strategie--cost-aware-llm-routing) | Cost-aware LLM routing strategy |
 | [structural-mapping/](#6-structural-mapping--organizational-power-mapper) | Organizational power structure mapper |
@@ -48,7 +48,7 @@ The directory serves three roles simultaneously:
 | **Templates/** | 6 templates: README, phase, bug report, technical debt, deployment report, prompts |
 | **Pull cycle** | Practices emerge from real applications → evaluated via `core-normalize` → integrated into standard or logged as technical debt |
 
-### 3. Place de Grève — Autonomous Mission Queue
+### 3. mission-queue — Autonomous Mission Queue
 
 | Sub-element | Role |
 |-------------|------|
@@ -168,7 +168,7 @@ Agent may tidy if asked                 [core-rationalize] (human-triggered) Pha
 | Component | Status | Notes |
 |-----------|--------|-------|
 | **Core-Standards** | V1 operational | Phase 1 complete, phase 2 (technical debt) planned |
-| **Place de Grève** | V3 deployed, V6 in development | 26+ versions of the norm, midnight investigation complete |
+| **mission-queue** | V3 deployed, V6 in development | 26+ versions of the norm, midnight investigation complete |
 | **Registry-Mind** | V1 scaffolded | BLUEPRINT defined, Kotlin spec complete |
 | **Token-Strategie** | V1 scaffolded | Implementation pending |
 | **Structural-Mapping** | Pre-scaffold | BLUEPRINT defined, nomenclature validated |

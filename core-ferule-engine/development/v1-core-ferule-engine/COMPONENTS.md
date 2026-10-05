@@ -36,7 +36,7 @@ core-ferule-engine/
 ### Flow
 
 ```
-1. Poll `place-de-greve/missions/` (5s)
+1. Poll `mission-queue/missions/` (5s)
 2. Lit mission JSON/YAML
 3. Évalue rules (Jinja2 conditions)
 4. Écrit `ferule-core/results/routed-<id>.json`
@@ -46,7 +46,7 @@ core-ferule-engine/
 
 ```yaml
 file_bus:
-  input_dir: "place-de-greve/missions"
+  input_dir: "mission-queue/missions"
   output_dir: "ferule-core/results"
   poll_interval_seconds: 5
 ```

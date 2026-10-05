@@ -12,7 +12,7 @@
 
 - [x] Formalize: core-cognition = attentive cognition (not passive "ear") — observes, detects, classifies, routes
 - [x] Document: does not execute missions, only understands and delegates
-- [x] Document: hard constraint — never submit to Place de Grève without `context:domain` resolved
+- [x] Document: hard constraint — never submit to mission-queue without `context:domain` resolved
 
 **Effort:** 15 min
 

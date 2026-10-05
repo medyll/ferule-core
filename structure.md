@@ -166,8 +166,8 @@ Location: `reports/deployment-report.md`
 
 | Item | Convention | Example |
 |------|-----------|---------|
-| **Application folder** | kebab-case | `place-de-greve` |
-| **Project folder** | `<version>-<project-id>` | `v3-place-de-greve` |
+| **Application folder** | kebab-case | `mission-queue` |
+| **Project folder** | `<version>-<project-id>` | `v3-mission-queue` |
 | **Phase files** | `phase-N-<slug>.md` | `phase-1-repair.md` |
 | **Bug IDs** | `ISSUE-xxxx-NNNNN` | `ISSUE-cstds-00003` |
 | **Debt IDs** | `TECH-xxxx-NNNNN` | `TECH-cstds-00007` |
@@ -290,7 +290,7 @@ When a skill produces a user-facing response (any command output, status report,
 | Skill responding | Tag |
 |-----------------|-----|
 | `core-cognition` | `[core-cognition:skill v1.0 | core-standard v1 | type: atlas]` |
-| `place-de-greve` | `[place-de-greve:skill v3.0 | core-standard v1 | type: scan]` |
+| `mission-queue` | `[mission-queue:skill v3.0 | core-standard v1 | type: scan]` |
 | `formal-ideation` | `[formal-ideation:skill v1.0 | core-standard v1 | type: brainstorm]` |
 
 **Rules:**

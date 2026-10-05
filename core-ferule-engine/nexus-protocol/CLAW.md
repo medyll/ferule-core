@@ -9,7 +9,7 @@ It does not initiate communication — it reacts to missions and alerts.
 
 | Direction | Channel | Format |
 |-----------|---------|--------|
-| Receives missions | `place-de-greve/missions/` | JSON file (polled 5s) |
+| Receives missions | `mission-queue/missions/` | JSON file (polled 5s) |
 | Routes to LLM | `token-strategie/missions/` | JSON file write |
 | Receives requests | `POST /process` | REST (FastAPI) |
 

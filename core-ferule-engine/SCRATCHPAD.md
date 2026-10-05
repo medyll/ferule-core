@@ -48,7 +48,7 @@ core-ferule-engine/
 Créer `skill/ferule-core/SKILL.md` :
 - Point d'entrée unique pour la Férule
 - Écoute, interprète, route vers :
-  - `core-squad` → Missions, Place de Grève
+  - `core-squad` → Missions, mission-queue
   - `core-standard` → Normes, taxonomie
   - `watchdog` → Health checks
 

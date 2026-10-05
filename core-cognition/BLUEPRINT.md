@@ -6,7 +6,7 @@
 
 ## Overview
 
-`core-cognition` is the **listening and routing layer** of the OpenClaw core-ferule ecosystem. It receives raw, unstructured input, interprets intent, classifies it via `machinery`, and routes resolved missions to Place de Grève. It does not execute — it understands and delegates.
+`core-cognition` is the **listening and routing layer** of the OpenClaw core-ferule ecosystem. It receives raw, unstructured input, interprets intent, classifies it via `machinery`, and routes resolved missions to mission-queue. It does not execute — it understands and delegates.
 
 ## Architecture
 
@@ -15,7 +15,7 @@
 | Input | Process | Output |
 |-------|---------|--------|
 | Raw user message | Parse intent, identify domain | `context:domain` resolved or ambiguity flagged |
-| Mission with resolved `context:domain` | Direct submission to Place de Grève | No core-cognition hop needed |
+| Mission with resolved `context:domain` | Direct submission to mission-queue | No core-cognition hop needed |
 | Ambiguous input | Request confirmation before routing | Human-confirmed intent |
 
 ### 2. Routing Pipeline
@@ -29,12 +29,12 @@ Domain resolution (which app handles this?)
     ↓
 machinery/classifier.mjs → classification result
     ↓
-Place de Grève submission (with context:domain)
+mission-queue submission (with context:domain)
 ```
 
 ### 3. Hard Constraints
 
-- **Never** submit to Place de Grève without `context:domain` resolved
+- **Never** submit to mission-queue without `context:domain` resolved
 - **Never** execute the mission — only route
 - **Always** request confirmation on ambiguity
 
@@ -66,7 +66,7 @@ Metacognition is a stronger predictor of success than raw processing power. A sy
 |------|------|
 | `USER-NOTES.md` | Routing decisions, domain constraints, metacognition principle |
 | `machinery/development/v1-machinery/classifier.mjs` | Classification engine — read before any routing |
-| `place-de-greve/` | Mission submission target |
+| `mission-queue/` | Mission submission target |
 
 ## Current State
 

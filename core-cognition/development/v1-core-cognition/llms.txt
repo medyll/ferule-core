@@ -1,6 +1,6 @@
 # core-cognition
 
-> OpenClaw listener and intent interpreter — classifies raw intent and routes to Place de Grève.
+> OpenClaw listener and intent interpreter — classifies raw intent and routes to mission-queue.
 
 ## Documentation
 

@@ -3,7 +3,7 @@
 > **Version:** 1.0
 > **Date:** 2026-04-10
 > **Author:** Claude
-> **Source:** Derived from midnight-hell 09-04-2026 (place-de-greve) and core-standard v1 consolidation.
+> **Source:** Derived from midnight-hell 09-04-2026 (mission-queue) and core-standard v1 consolidation.
 
 ---
 
@@ -90,9 +90,9 @@
 
 | Rule | Detail |
 |------|--------|
-| **No standalone extraction without decision** | A package from the idae monorepo (or any workspace monorepo) MUST NOT be extracted into a standalone repo without a decision explicitly traced in Place de Grève |
+| **No standalone extraction without decision** | A package from the idae monorepo (or any workspace monorepo) MUST NOT be extracted into a standalone repo without a decision explicitly traced in mission-queue |
 | **Collision risk** | Extracting a package creates a duplicate `project:` entry in BMAD scan — the scan has no tiebreaker, resolution is undefined |
-| **Decision ticket required** | The Place de Grève ticket MUST include: reason for extraction, target path, and whether the monorepo copy is to be archived or kept in sync |
+| **Decision ticket required** | The mission-queue ticket MUST include: reason for extraction, target path, and whether the monorepo copy is to be archived or kept in sync |
 | **Naming disambiguation** | If a standalone variant must coexist with a monorepo package, its `bmad/status.yaml` MUST use a distinct `project:` value (e.g. `idae-machine-statemachine` vs `idae-machine`) |
 
 ---

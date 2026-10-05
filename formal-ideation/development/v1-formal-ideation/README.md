@@ -10,7 +10,7 @@
 
 - Applications README : `ferule-core/README.md`
 - User Notes : `ferule-core/formal-ideation/USER-NOTES.md`
-- Applications existantes : `place-de-greve/`, `core-standard/`
+- Applications existantes : `mission-queue/`, `core-standard/`
 
 ---
 

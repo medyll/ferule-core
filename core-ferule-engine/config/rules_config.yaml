@@ -1,5 +1,5 @@
 file_bus:
-  input_dir: "place-de-greve/missions"
+  input_dir: "mission-queue/missions"
   output_dir: "ferule-core/results"
   poll_interval_seconds: 5
 

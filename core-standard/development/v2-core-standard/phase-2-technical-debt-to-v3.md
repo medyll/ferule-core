@@ -36,7 +36,7 @@
 ### TD-03 — Normative candidate: domain-registry.json
 
 **Discovered:** 2026-04-12 — core-normalize scan — Qwen Code
-**File:** `place-de-greve/domain-registry.json`
+**File:** `mission-queue/domain-registry.json`
 **Issue:** Element `domain-registry.json` defines domain routing alongside `domain-registry.json` — same pattern, complementary purpose.
 **Impact:** Both files follow the same convention; should be documented together.
 **Risk:** Low

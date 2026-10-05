@@ -6,7 +6,7 @@
 
 ## Overview
 
-`core-cognition` is the ear of OpenClaw. It receives raw intent from any source (human, TUI, VSCode), interprets the need via `machinery`, and routes to the correct domain handler through Place de Grève.
+`core-cognition` is the ear of OpenClaw. It receives raw intent from any source (human, TUI, VSCode), interprets the need via `machinery`, and routes to the correct domain handler through mission-queue.
 
 > Logs are cognition. If core-ferule sees its own logs, that is metacognition.
 
@@ -31,5 +31,5 @@
 | Dependency | Role |
 |------------|------|
 | `machinery/classifier.mjs` | Intent classification |
-| `place-de-greve/domain-registry.json` | Domain source of truth |
-| Place de Grève V6 | Queue handler |
+| `mission-queue/domain-registry.json` | Domain source of truth |
+| mission-queue V6 | Queue handler |

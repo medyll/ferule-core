@@ -1,6 +1,6 @@
 # PHASE 1 — Setup & File Bus Integration
 
-> Establish the Python engine, base YAML rules, and file-based communication with place-de-greve.
+> Establish the Python engine, base YAML rules, and file-based communication with mission-queue.
 
 ---
 
@@ -34,10 +34,10 @@
 
 ---
 
-### 1.3 — File Bus with place-de-greve
+### 1.3 — File Bus with mission-queue
 
 **File:** `config/rules_config.yaml`, `core/engine.py`
-**Problem:** No polling of `place-de-greve/missions/` implemented.
+**Problem:** No polling of `mission-queue/missions/` implemented.
 **Risk:** Engine never receives missions — fully deaf.
 
 - [x] Configure `file_bus.input_dir` in `rules_config.yaml`

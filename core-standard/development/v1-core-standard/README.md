@@ -7,7 +7,7 @@
 
 - Applications README: `ferule-core/README.md`
 - User Notes: `ferule-core/core-standard/USER-NOTES.md`
-- Existing applications: `place-de-greve/`, `core-squad/`
+- Existing applications: `mission-queue/`, `core-squad/`
 
 ## Overview
 

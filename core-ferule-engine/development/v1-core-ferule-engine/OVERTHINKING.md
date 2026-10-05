@@ -76,7 +76,7 @@ core-ferule-engine/
 ### Simple Flow
 
 ```
-1. Place de Grève écrit mission → place-de-greve/missions/
+1. mission-queue écrit mission → mission-queue/missions/
 2. Engine poll (5s) → lit mission
 3. Engine évalue rules → trouve target
 4. Engine écrit → ferule-core/results/routed-<id>.json
