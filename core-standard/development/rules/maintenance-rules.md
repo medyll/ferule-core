@@ -72,7 +72,6 @@
 | Rule | Detail |
 |------|--------|
 | **Silence is a signal** | A system that produces no output for longer than its expected cycle is in failure — silence must trigger investigation |
-| **Watchdog obligation** | Any periodic mechanism (heartbeat, cron, watcher) MUST have an independent watchdog that detects and reports its absence |
 | **First signal matters** | The tipping point of a failure cascade is always earlier than it appears — identify the first anomaly, not the most visible one |
 
 ---
