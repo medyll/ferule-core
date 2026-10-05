@@ -49,7 +49,6 @@ core-ferule-engine/
 |--------|--------|
 | Mission, Place de Grève | core-squad/ |
 | Norm, structure, taxonomy | core-standard/ |
-| Health, alerts | watchdog/ |
 | Incident report | incidents/ |
 | Cognition, routing | core-cognition/ |
 

@@ -12,7 +12,6 @@ It does not initiate communication — it reacts to missions and alerts.
 | Receives missions | `place-de-greve/missions/` | JSON file (polled 5s) |
 | Routes to LLM | `token-strategie/missions/` | JSON file write |
 | Receives requests | `POST /process` | REST (FastAPI) |
-| Receives alerts | `watchdog/alerts/` | JSON file (polled) |
 | Notifies on alert | `core-squad/nexus-protocol/` | Appended markdown |
 
 ## Notes for inter-agent communication

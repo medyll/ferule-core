@@ -338,23 +338,6 @@ Optional app-root directory for binary media files.
 
 ---
 
-## 17. protocol.json — Inter-App Communication
-
-Optional app-root file declaring inter-application protocol: participants, event types, and routing rules.
-
-### Rules
-
-| Rule | Detail |
-|------|--------|
-| **Location** | App root: `<app-name>/protocol.json` |
-| **Structure** | JSON with `participants[]`, `event_types[]`, and `routing` sections |
-| **Participants** | Each declares `name`, `domain`, and `capabilities[]` (emit/handle prefixes) |
-| **Event types** | Each declares `type`, `description`, and `payload_required[]` |
-| **Routing** | Handlers declared via `handle:<event_type>` capability — unrouted events are logged, no silent drops |
-| **Validator** | Known element — not flagged as unknown |
-
----
-
 ## 16. context-registry.json — Domain Routing
 
 Optional app-root file for applications that route across multiple contexts/domains.

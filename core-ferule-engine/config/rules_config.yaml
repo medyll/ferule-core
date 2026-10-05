@@ -7,10 +7,6 @@ logging:
   level: "INFO"
   file: "%APPDATA%\\CoreFeruleEngine\\logs\\ferule-core.log"
 
-watchdog:
-  alerts_dir: "watchdog/alerts"
-  notify_target: "core-squad/nexus-protocol"
-
 api:
   host: "0.0.0.0"
   port: 8000

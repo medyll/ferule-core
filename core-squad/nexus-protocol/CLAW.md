@@ -10,7 +10,6 @@ It coordinates communication between other core modules and external agents.
 | Direction | Channel | Format |
 |-----------|---------|--------|
 | Receives missions | `place-de-greve/missions/` | JSON file (polled 5s) |
-| Receives alerts | `watchdog/alerts/` | JSON file (polled) |
 | Routes to modules | `core-*/nexus-protocol/CLAW.md` | Module-specific |
 | Surfaces status | `production-dashboard.md` | Markdown table |
 

@@ -82,7 +82,6 @@ core-ferule-engine/
 |--------|--------|
 | Mission, Place de Grève | `core-squad/` |
 | Norm, structure, taxonomy | `core-standard/` |
-| Health, alerts | `watchdog/` |
 | Incident report | `incidents/` |
 
 **Status:** ⏳ To be created (auto-generated on bootstrap)
@@ -242,7 +241,6 @@ core-ferule-engine/
 |--------|--------------|
 | `core-squad/` | Routes missions to orchestrator |
 | `core-standard/` | Enforces norms defined by standard |
-| `watchdog/` | Receives health alerts |
 | `incidents/` | Logs critical failures |
 
 ---

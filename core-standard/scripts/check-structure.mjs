@@ -23,7 +23,7 @@ const OK = '✅';
 const UNKNOWN = '🔍';
 
 // ─── Known structure — elements covered by the standard ─────────────────────
-const KNOWN_FILES = new Set(['llms.txt', 'README.md', 'USER-NOTES.md', 'PROMPT-TEMPLATES.md', 'SKILL.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'protocol.json', 'index.mjs', 'package.json', 'CLAW.md', 'requirements.txt', 'run_engine.py']);
+const KNOWN_FILES = new Set(['llms.txt', 'README.md', 'USER-NOTES.md', 'PROMPT-TEMPLATES.md', 'SKILL.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'index.mjs', 'package.json', 'CLAW.md', 'requirements.txt', 'run_engine.py']);
 const KNOWN_DIRS = new Set(['reports', 'archives', 'logs', 'scripts', 'contexts', 'skill', 'templates', 'rules', 'sources', 'source', 'assets', 'nexus-protocol', 'config', 'artifacts', 'references', '.openclaw', 'bmad', 'core', 'interfaces', 'embeddings']);
 const KNOWN_FILE_PATTERNS = [
   /^phase-\d+-.+\.md$/,        // phase files
@@ -171,7 +171,7 @@ function scanApplications() {
     for (const entry of appRootEntries) {
       if (isTransient(entry)) continue;
       // Known app-root elements
-      const appRootKnown = new Set(['development', 'contexts', 'USER-NOTES.md', 'README.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'protocol.json', 'skill', '.gitkeep', 'templates', 'index.mjs', 'package.json', 'CLAW.md', 'HEARTBEAT.md']);
+      const appRootKnown = new Set(['development', 'contexts', 'USER-NOTES.md', 'README.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'skill', '.gitkeep', 'templates', 'index.mjs', 'package.json', 'CLAW.md', 'HEARTBEAT.md']);
       if (!appRootKnown.has(entry) && !KNOWN_DIRS.has(entry) && !KNOWN_FILES.has(entry)) {
         reportUnknown(appDir, entry, appPath);
       }

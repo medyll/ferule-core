@@ -90,7 +90,6 @@ actions:
 |--------|--------|
 | Mission | `core-squad/` |
 | Norme | `core-standard/` |
-| Alerts | `watchdog/` |
 | Incidents | `incidents/` |
 
 ---

@@ -50,8 +50,3 @@ hooks:
     target: "core-standard"
     command: "node core-standard/scripts/check-structure.mjs"
 
-  # Sync status to openspace for cross-app visibility
-  on_status_update:
-    target: "core-openspace"
-    method: "file"
-    path: "core-openspace/status-sync.yaml"

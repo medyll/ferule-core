@@ -10,7 +10,6 @@ It coordinates BMAD projects, manages sprints, and enforces the Chain Protocol.
 | Direction | Channel | Format |
 |-----------|---------|--------|
 | Receives missions | `place-de-greve/missions/` | JSON file (polled 5s) |
-| Receives alerts | `watchdog/alerts/` | JSON file (polled) |
 | Routes to agents | `skill/*/SKILL.md` | Agent-specific |
 | Reports status | `artifacts/status.txt` | Markdown table |
 
