@@ -24,7 +24,7 @@ const UNKNOWN = '🔍';
 
 // ─── Known structure — elements covered by the standard ─────────────────────
 const KNOWN_FILES = new Set(['llms.txt', 'README.md', 'USER-NOTES.md', 'PROMPT-TEMPLATES.md', 'SKILL.md', 'BLUEPRINT.md', 'SCRATCHPAD.md', 'DEPENDENCIES.md', 'context-registry.json', 'domain-registry.json', 'index.mjs', 'package.json', 'CLAW.md', 'requirements.txt', 'run_engine.py']);
-const KNOWN_DIRS = new Set(['reports', 'archives', 'logs', 'scripts', 'contexts', 'skill', 'templates', 'rules', 'sources', 'source', 'assets', 'nexus-protocol', 'config', 'artifacts', 'references', '.openclaw', 'bmad', 'core', 'interfaces', 'embeddings']);
+const KNOWN_DIRS = new Set(['reports', 'archives', 'logs', 'scripts', 'contexts', 'skill', 'templates', 'rules', 'sources', 'assets', 'nexus-protocol', 'config', '.openclaw', 'bmad', 'core', 'interfaces', 'embeddings']);
 const KNOWN_FILE_PATTERNS = [
   /^phase-\d+-.+\.md$/,        // phase files
   /^phase-\d+-technical-debt/,  // debt files

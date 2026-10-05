@@ -1,2 +1,2 @@
 .acp-team/
-*.tmp.mjs
+node_modules/

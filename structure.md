@@ -433,20 +433,12 @@ Some applications under `application-core/` serve as orchestrators or engines fo
 | Rule | Detail |
 |------|--------|
 | **Location** | Application root only: `<app-name>/config/` |
-| **Purpose** | Centralized workspace configuration — engine settings, role definitions, known applications, cross-app hooks |
-| **Format** | YAML files (`.yaml`) — one per domain (e.g., `engine.yaml`, `roles.yaml`, `workspace.yaml`) |
-| **Content** | Deterministic settings: routing, thresholds, identity pools, application paths, hook targets |
+| **Purpose** | Centralized workspace configuration — engine settings, known applications, cross-app hooks |
+| **Format** | YAML files (`.yaml`) — one per domain (e.g., `core-ferule-engine/config/rules_config.yaml`) |
+| **Content** | Deterministic settings: routing, thresholds, application paths, hook targets |
 | **Consumption** | Read by the application's skill (SKILL.md) and/or CLI scripts at runtime |
 | **Validator** | Known element — `config/` directory and `.yaml` files inside are not flagged as unknown |
 | **Not for every app** | Only applications that orchestrate other applications need a `config/` directory. Regular development projects use their own `status.yaml` and `config.yaml` in `./bmad/` or equivalent. |
-
-### Standard Config Files
-
-| File | Domain |
-|------|--------|
-| `config/engine.yaml` | Engine behavior: ACP availability, chain protocol, test enforcement, logging |
-| `config/roles.yaml` | Role definitions, harness mapping, agent identity pools |
-| `config/workspace.yaml` | Known applications, paths, cross-workflow hooks |
 
 ### Usage Guidance
 
