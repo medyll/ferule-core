@@ -1,5 +1,0 @@
-{"timestamp":"2026-04-13T01:05:52.926Z","name":"watcher-process","status":"fail","expected":"dashboard-watcher.mjs running","actual":"not found","severity":"critical"}
-{"timestamp":"2026-04-13T01:05:52.932Z","name":"scan-log-recent","status":"pass","expected":"recent scan log","actual":"20min old"}
-{"timestamp":"2026-04-13T01:05:52.936Z","name":"domain-registry","status":"pass","expected":"valid JSON registry","actual":"valid"}
-{"timestamp":"2026-04-13T01:05:52.941Z","name":"place-de-greve-accessible","status":"pass","expected":"accessible mission queue","actual":"accessible"}
-{"timestamp":"2026-04-13T01:05:52.945Z","name":"lock-file-stale","status":"pass","expected":"no stale lock","actual":"no lock file"}
